@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARYA — Pitch Deck · 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --f:   #111a0f;
+  --d:   #161e13;
+  --ol:  #1f2b1b;
+  --olm: #2a3a24;
+  --oll: #364d2e;
+  --bdr: rgba(255,255,255,0.07);
+  --bdg: rgba(212,175,84,0.22);
+  --gld: #d4af54;
+  --glb: #e8c96a;
+  --gdm: rgba(212,175,84,0.15);
+  --gdk: rgba(212,175,84,0.07);
+  --crm: #f2e8d0;
+  --mut: rgba(242,232,208,0.48);
+  --fnt: rgba(242,232,208,0.13);
+  --wht: #faf6ee;
+  --sge: #4e8a5e;
+  --rst: #b85230;
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;}
+body{background:var(--f);color:var(--crm);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* grain overlay */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 52px;
+  background:linear-gradient(to bottom,rgba(17,26,15,0.96) 50%,transparent);}
+@media(max-width:768px){nav{padding:16px 20px;}}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;
+  letter-spacing:.26em;color:var(--gld);text-transform:uppercase;
+  display:flex;align-items:center;gap:9px;}
+.nav-logo::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gld);}
+.nav-r{display:flex;align-items:center;gap:18px;}
+.nav-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--fnt);min-width:110px;text-align:right;}
+.ndots{display:flex;gap:6px;flex-wrap:wrap;max-width:180px;}
+.ndot{width:5px;height:5px;border-radius:50%;background:var(--fnt);cursor:pointer;border:none;padding:0;transition:all .3s;}
+.ndot.active{background:var(--gld);transform:scale(1.5);}
+
+/* SLIDES */
+.slide{min-height:100vh;scroll-snap-align:start;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:104px 72px 72px;position:relative;overflow:hidden;z-index:1;}
+@media(max-width:768px){.slide{padding:96px 20px 60px;}}
+
+/* animated content */
+.sc{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
+.sc.v{opacity:1;transform:none;}
+.d1{transition-delay:.08s;}.d2{transition-delay:.17s;}.d3{transition-delay:.26s;}
+.d4{transition-delay:.35s;}.d5{transition-delay:.44s;}
+
+/* TAG */
+.tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.26em;color:var(--gld);
+  display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+.tag::before{content:'';width:22px;height:1px;background:var(--gld);opacity:.55;}
+
+/* HEADLINES */
+.hl{font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,5.2vw,64px);font-weight:300;line-height:1.06;
+  color:var(--wht);margin-bottom:10px;}
+.hl em{font-style:italic;color:var(--gld);}
+.hl strong{font-weight:700;}
+.sub{font-size:14px;color:var(--mut);line-height:1.8;max-width:520px;margin-bottom:32px;}
+
+/* FOOTER */
+.sf{position:absolute;bottom:18px;left:72px;right:72px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(212,175,84,.1);padding-top:12px;}
+@media(max-width:768px){.sf{left:20px;right:20px;}}
+.sf-b{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:700;
+  letter-spacing:.2em;color:rgba(212,175,84,.32);}
+.sf-n{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.16em;color:var(--fnt);}
+
+/* ────────── SHARED COMPONENTS ────────── */
+.card{background:var(--olm);border:1px solid var(--bdr);padding:20px 22px;}
+.card-g{background:var(--gdk);border:1px solid var(--bdg);padding:20px 22px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:28px;align-items:start;}
+@media(max-width:768px){.two{grid-template-columns:1fr;gap:24px;}}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:28px;}
+@media(max-width:768px){.three{grid-template-columns:1fr;}}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:24px;}
+@media(max-width:768px){.four{grid-template-columns:1fr 1fr;}}
+
+.bq{font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,2.2vw,24px);font-weight:300;font-style:italic;
+  line-height:1.55;color:var(--wht);
+  border-left:2px solid var(--gld);padding:14px 22px;margin:24px 0;}
+.bq strong{font-style:normal;font-weight:700;color:var(--gld);}
+
+.kp-list{display:flex;flex-direction:column;gap:2px;margin-top:18px;}
+.kp{background:var(--olm);border:1px solid var(--bdr);padding:14px 18px;
+  display:flex;gap:14px;align-items:flex-start;}
+.kp-d{width:5px;height:5px;border-radius:50%;background:var(--gld);flex-shrink:0;margin-top:6px;}
+.kp-t{font-size:13px;color:var(--mut);line-height:1.55;font-weight:300;}
+.kp-t strong{color:var(--wht);font-weight:400;}
+
+/* ════════════════════════════════
+   S1 — COVER
+════════════════════════════════ */
+#s1{background:var(--f);}
+.s1-bg{position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 55% at 78% 48%,rgba(42,58,36,.45) 0%,transparent 65%),
+             radial-gradient(ellipse 30% 40% at 8% 80%,rgba(212,175,84,.07) 0%,transparent 55%);}
+.crest{position:absolute;right:-60px;top:50%;transform:translateY(-50%);
+  width:520px;height:520px;opacity:.08;animation:rotateSlow 90s linear infinite;}
+@keyframes rotateSlow{to{transform:translateY(-50%) rotate(360deg);}}
+.s1-inner{position:relative;z-index:1;max-width:680px;}
+.s1-ey{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.28em;color:var(--gld);
+  margin-bottom:32px;opacity:0;animation:riseUp 1s .1s cubic-bezier(.16,1,.3,1) forwards;}
+.s1-nm{font-family:'Cormorant Garamond',serif;
+  font-size:clamp(84px,13vw,148px);font-weight:700;line-height:.9;letter-spacing:.1em;
+  color:var(--wht);text-transform:uppercase;
+  opacity:0;animation:riseUp 1.1s .28s cubic-bezier(.16,1,.3,1) forwards;}
+.s1-nm span{color:var(--gld);}
+.s1-rule{width:110px;height:2px;background:linear-gradient(to right,var(--gld),transparent);
+  margin:18px 0 20px;opacity:0;animation:riseUp 1s .44s cubic-bezier(.16,1,.3,1) forwards;}
+.s1-tl{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.2vw,23px);
+  font-weight:300;font-style:italic;color:rgba(212,175,84,.78);margin-bottom:24px;
+  opacity:0;animation:riseUp 1s .56s cubic-bezier(.16,1,.3,1) forwards;}
+.s1-desc{font-size:13px;line-height:1.85;color:var(--mut);max-width:460px;
+  padding-left:18px;border-left:2px solid rgba(212,175,84,.28);
+  opacity:0;animation:riseUp 1s .68s cubic-bezier(.16,1,.3,1) forwards;}
+.s1-meta{display:flex;gap:36px;margin-top:48px;flex-wrap:wrap;
+  opacity:0;animation:riseUp 1s .82s cubic-bezier(.16,1,.3,1) forwards;}
+.s1-mk{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--gld);margin-bottom:3px;}
+.s1-mv{font-size:13px;color:var(--mut);}
+@keyframes riseUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+/* ════════════════════════════════
+   S2 — PROBLEM
+════════════════════════════════ */
+#s2{background:var(--d);}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.stat-c{background:var(--olm);border:1px solid var(--bdr);padding:22px 18px;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;
+  color:var(--gld);line-height:1;display:block;margin-bottom:5px;}
+.stat-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:var(--mut);line-height:1.5;}
+.pain-list{display:flex;flex-direction:column;gap:2px;margin-top:24px;}
+.pain{background:var(--olm);border:1px solid var(--bdr);padding:13px 18px;
+  display:flex;gap:13px;align-items:flex-start;}
+.px{color:var(--rst);font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0;margin-top:2px;}
+.pt{font-size:13px;color:var(--mut);line-height:1.5;font-weight:300;}
+
+/* ════════════════════════════════
+   S3 — ARCHITECTURE GAP
+════════════════════════════════ */
+#s3{background:var(--f);}
+.gap-flow{margin:32px 0;display:flex;flex-direction:column;gap:2px;}
+.gf-row{display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:center;}
+@media(max-width:768px){.gf-row{grid-template-columns:1fr;}}
+.gf-box{background:var(--olm);border:1px solid var(--bdr);padding:16px 20px;}
+.gf-box.exists{border-color:var(--sge);}
+.gf-box.missing{background:rgba(184,82,48,.08);border-color:rgba(184,82,48,.4);}
+.gf-box.arya{background:var(--gdk);border-color:var(--bdg);}
+.gf-tag{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.15em;color:var(--gld);margin-bottom:3px;}
+.gf-tag.red{color:var(--rst);}
+.gf-name{font-size:13px;font-weight:400;color:var(--wht);}
+.gf-arrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--sge);text-align:center;}
+
+/* ════════════════════════════════
+   S4 — WHY NOW
+════════════════════════════════ */
+#s4{background:var(--d);}
+.now-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:28px;}
+@media(max-width:768px){.now-grid{grid-template-columns:1fr;}}
+.now-c{background:var(--olm);border:1px solid var(--bdr);padding:22px 20px;position:relative;overflow:hidden;}
+.now-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.now-c:nth-child(1)::before{background:var(--sge);}
+.now-c:nth-child(2)::before{background:var(--gld);}
+.now-c:nth-child(3)::before{background:var(--rst);}
+.now-c:nth-child(4)::before{background:linear-gradient(to right,var(--gld),var(--glb));}
+.now-icon{font-size:24px;margin-bottom:10px;}
+.now-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--wht);margin-bottom:6px;}
+.now-desc{font-size:12px;color:var(--mut);line-height:1.65;font-weight:300;}
+
+/* ════════════════════════════════
+   S5 — THE INSIGHT
+════════════════════════════════ */
+#s5{background:var(--f);}
+.insight-four{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:28px;}
+@media(max-width:768px){.insight-four{grid-template-columns:1fr 1fr;}}
+.ins-c{background:var(--olm);border:1px solid var(--bdr);padding:24px 18px;}
+.ins-c.arya{background:var(--gdk);border-color:var(--bdg);}
+.ins-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--wht);margin-bottom:3px;}
+.ins-c.arya .ins-name{color:var(--gld);}
+.ins-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.13em;color:var(--gld);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--bdr);}
+.ins-item{font-size:12px;color:var(--mut);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);display:flex;gap:8px;font-weight:300;}
+.ins-item::before{content:'·';color:var(--gld);flex-shrink:0;}
+.ins-item:last-child{border-bottom:none;}
+
+/* ════════════════════════════════
+   S6 — DEMAND ENGINE
+════════════════════════════════ */
+#s6{background:var(--d);}
+.de-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:28px;align-items:start;}
+@media(max-width:768px){.de-grid{grid-template-columns:1fr;}}
+.de-data{display:flex;flex-direction:column;gap:2px;}
+.de-row{background:var(--olm);border:1px solid var(--bdr);padding:18px 22px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.de-label{font-size:12px;color:var(--mut);font-weight:300;line-height:1.4;}
+.de-label strong{color:var(--wht);font-weight:400;display:block;font-size:11px;margin-bottom:2px;}
+.de-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:var(--gld);flex-shrink:0;}
+.de-chain{display:flex;flex-direction:column;gap:2px;}
+.de-chain-row{background:var(--olm);border:1px solid var(--bdr);padding:16px 20px;
+  display:flex;align-items:center;gap:14px;}
+.de-chain-row.gold{background:var(--gdk);border-color:var(--bdg);}
+.de-ico{font-size:18px;flex-shrink:0;}
+.de-chain-title{font-size:13px;font-weight:400;color:var(--wht);margin-bottom:2px;}
+.de-chain-desc{font-size:11px;color:var(--mut);font-weight:300;line-height:1.4;}
+.de-arrow{text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--gld);padding:4px 0;}
+
+/* ════════════════════════════════
+   S7 — WHAT IS ARYA
+════════════════════════════════ */
+#s7{background:var(--f);}
+.arya-three{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:28px;}
+@media(max-width:768px){.arya-three{grid-template-columns:1fr;}}
+.a3-c{background:var(--olm);border:1px solid var(--bdr);padding:28px 22px;position:relative;overflow:hidden;}
+.a3-bar{position:absolute;top:0;left:0;right:0;height:2px;}
+.a3-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;
+  color:rgba(212,175,84,.15);line-height:1;margin-bottom:12px;}
+.a3-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;
+  color:var(--gld);margin-bottom:6px;}
+.a3-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;
+  color:var(--mut);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--bdr);}
+.a3-items{display:flex;flex-direction:column;gap:5px;}
+.a3-item{font-size:12px;color:var(--mut);display:flex;gap:8px;font-weight:300;padding:3px 0;}
+.a3-item::before{content:'→';color:var(--gld);font-family:'DM Mono',monospace;font-size:9px;flex-shrink:0;}
+
+/* ════════════════════════════════
+   S8 — ARYA STANDARD
+════════════════════════════════ */
+#s8{background:var(--d);}
+
+/* ════════════════════════════════
+   S9 — THE FLOW
+════════════════════════════════ */
+#s9{background:var(--f);}
+.flow-steps{display:flex;flex-direction:column;gap:2px;margin-top:28px;}
+.fs-row{background:var(--olm);border:1px solid var(--bdr);
+  display:grid;grid-template-columns:60px 1fr auto;align-items:center;overflow:hidden;}
+@media(max-width:600px){.fs-row{grid-template-columns:50px 1fr;}}
+.fs-num{background:var(--gdk);border-right:1px solid var(--bdr);
+  padding:18px;text-align:center;height:100%;display:flex;align-items:center;justify-content:center;}
+.fs-n{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--gld);}
+.fs-body{padding:16px 20px;}
+.fs-title{font-size:13px;font-weight:400;color:var(--wht);margin-bottom:3px;}
+.fs-desc{font-size:12px;color:var(--mut);font-weight:300;line-height:1.5;}
+.fs-badge{padding:16px 20px;border-left:1px solid var(--bdr);flex-shrink:0;}
+.fs-status{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;color:var(--sge);white-space:nowrap;}
+
+/* ════════════════════════════════
+   LAPTOP MOCKUP (S10, S11, S12)
+════════════════════════════════ */
+.laptop-slide{background:var(--d);}
+.laptop-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:36px;margin-top:24px;align-items:center;}
+@media(max-width:768px){.laptop-wrap{grid-template-columns:1fr;}}
+.laptop-info h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gld);margin-bottom:8px;}
+.laptop-info p{font-size:13px;color:var(--mut);line-height:1.7;margin-bottom:16px;}
+.laptop-url{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gld);
+  background:var(--olm);border:1px solid var(--bdg);padding:8px 14px;display:inline-block;margin-bottom:20px;}
+.laptop-feat{display:flex;flex-direction:column;gap:2px;}
+.lf{background:var(--olm);border:1px solid var(--bdr);padding:11px 16px;
+  display:flex;gap:12px;align-items:center;font-size:12px;color:var(--mut);}
+.lf::before{content:'✓';color:var(--sge);flex-shrink:0;font-size:13px;}
+
+/* Laptop frame */
+.laptop-frame{position:relative;}
+.laptop-shell{background:linear-gradient(160deg,#2a3526 0%,#1a2318 100%);
+  border-radius:12px 12px 0 0;padding:10px 10px 0;
+  box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06);}
+.laptop-bar{height:22px;background:var(--olm);border-radius:4px 4px 0 0;
+  display:flex;align-items:center;padding:0 10px;gap:5px;margin-bottom:2px;}
+.lb-dot{width:7px;height:7px;border-radius:50%;}
+.lb-dot:nth-child(1){background:#ff5f56;}
+.lb-dot:nth-child(2){background:#ffbd2e;}
+.lb-dot:nth-child(3){background:#27c93f;}
+.laptop-url-bar{background:#1a2318;border-radius:3px;padding:3px 10px;flex:1;margin-left:8px;
+  font-family:'DM Mono',monospace;font-size:8px;color:var(--mut);}
+.laptop-screen{background:#0d1510;border-radius:2px;overflow:hidden;min-height:280px;}
+.laptop-base{height:14px;background:linear-gradient(to bottom,#243020,#1a2318);
+  border-radius:0 0 4px 4px;margin:0 -6px;}
+.laptop-foot{height:8px;background:linear-gradient(to bottom,#1a2318,#111a0f);
+  border-radius:0 0 8px 8px;margin:0 20px;}
+
+/* Screen content inside laptop */
+.sc-dashboard{padding:12px;font-size:10px;}
+.sc-topbar{display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:8px;margin-bottom:10px;}
+.sc-logo{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;color:#5a9060;letter-spacing:.1em;}
+.sc-badge{background:rgba(78,138,94,.15);border:1px solid rgba(78,138,94,.3);
+  padding:2px 8px;font-family:'DM Mono',monospace;font-size:7px;color:#4e8a5e;}
+.sc-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px;}
+.sc-kpi{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);padding:8px;}
+.sc-kpi-l{font-family:'DM Mono',monospace;font-size:7px;color:rgba(242,232,208,.35);margin-bottom:3px;}
+.sc-kpi-v{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#d4af54;}
+.sc-kpi-s{font-size:8px;color:rgba(78,138,94,.8);}
+.sc-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.sc-panel{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);padding:8px;}
+.sc-panel-t{font-size:9px;color:rgba(242,232,208,.5);margin-bottom:6px;font-weight:400;}
+.harvest-item{display:flex;justify-content:space-between;align-items:center;
+  padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:9px;}
+.harvest-item:last-child{border-bottom:none;}
+.hi-name{color:rgba(242,232,208,.7);}
+.hi-amt{color:#d4af54;font-family:'DM Mono',monospace;}
+.hi-btn{background:rgba(78,138,94,.2);border:1px solid rgba(78,138,94,.3);
+  padding:1px 6px;font-size:7px;color:#4e8a5e;cursor:pointer;}
+.mini-bars{display:flex;align-items:flex-end;gap:3px;height:40px;padding-top:4px;}
+.mini-bar{flex:1;background:linear-gradient(to top,rgba(78,138,94,.6),rgba(78,138,94,.2));
+  border-radius:1px;}
+
+/* Broker dashboard screen */
+.sc-broker{padding:12px;}
+.sc-bkpis{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px;}
+.sc-inv-list{display:flex;flex-direction:column;gap:4px;}
+.sc-inv-bar{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.04);
+  padding:6px 8px;display:flex;align-items:center;gap:8px;}
+.inv-name{font-size:9px;color:rgba(242,232,208,.7);flex:1;}
+.inv-count{font-family:'DM Mono',monospace;font-size:9px;color:var(--gld);}
+.inv-bar-fill{height:4px;background:rgba(78,138,94,.3);flex:2;border-radius:2px;position:relative;}
+.inv-bar-fill::before{content:'';position:absolute;left:0;top:0;bottom:0;
+  background:#4e8a5e;border-radius:2px;}
+.inv-pct{font-family:'DM Mono',monospace;font-size:8px;color:rgba(78,138,94,.8);width:32px;text-align:right;}
+.cert-badge-big{background:rgba(78,138,94,.12);border:1px solid rgba(78,138,94,.35);
+  padding:6px 14px;display:inline-flex;align-items:center;gap:6px;
+  font-family:'DM Mono',monospace;font-size:9px;color:#4e8a5e;margin-bottom:10px;}
+
+/* Audit trail screen */
+.sc-audit{padding:12px;}
+.audit-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.audit-id{font-family:'DM Mono',monospace;font-size:10px;color:var(--gld);}
+.audit-match{background:rgba(78,138,94,.15);border:1px solid rgba(78,138,94,.35);
+  padding:3px 10px;font-family:'DM Mono',monospace;font-size:8px;color:#4e8a5e;}
+.audit-steps{display:flex;flex-direction:column;gap:0;}
+.audit-step{display:flex;align-items:flex-start;gap:10px;padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);}
+.audit-step:last-child{border-bottom:none;}
+.as-time{font-family:'DM Mono',monospace;font-size:8px;color:rgba(242,232,208,.35);flex-shrink:0;width:80px;}
+.as-evt{font-size:9px;color:rgba(242,232,208,.6);flex:1;}
+.as-status{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.1em;flex-shrink:0;}
+.as-status.ok{color:#4e8a5e;}
+.audit-dot{width:6px;height:6px;border-radius:50%;background:#4e8a5e;flex-shrink:0;margin-top:2px;}
+
+/* ════════════════════════════════
+   S13 — BUSINESS MODEL
+════════════════════════════════ */
+#s13{background:var(--f);}
+.bm-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:28px;}
+@media(max-width:768px){.bm-cards{grid-template-columns:1fr 1fr;}}
+.bm-c{background:var(--olm);border:1px solid var(--bdr);padding:24px 18px;position:relative;overflow:hidden;}
+.bm-bar{position:absolute;top:0;left:0;right:0;height:2px;}
+.bm-phase{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.16em;color:var(--mut);margin-bottom:10px;}
+.bm-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--wht);margin-bottom:4px;}
+.bm-who{font-size:11px;color:var(--gld);margin-bottom:14px;padding-bottom:11px;border-bottom:1px solid var(--bdr);}
+.bm-cta{background:var(--gdk);border:1px solid var(--bdg);padding:7px 12px;
+  font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--gld);margin-bottom:14px;display:inline-block;}
+.bm-feats{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.bm-feat{font-size:11px;color:var(--mut);display:flex;gap:7px;font-weight:300;}
+.bm-feat::before{content:'→';color:var(--gld);font-family:'DM Mono',monospace;font-size:8px;flex-shrink:0;}
+
+/* ════════════════════════════════
+   S14 — MARKET
+════════════════════════════════ */
+#s14{background:var(--d);}
+
+/* ════════════════════════════════
+   S15 — COMPETITIVE
+════════════════════════════════ */
+#s15{background:var(--f);}
+.ctbl{width:100%;border-collapse:collapse;margin-top:28px;font-size:12px;}
+.ctbl th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.13em;color:var(--gld);
+  text-align:center;padding:11px 10px;border-bottom:1px solid var(--bdr);font-weight:400;}
+.ctbl th:first-child{text-align:left;}
+.ctbl th.ac{background:var(--gdk);}
+.ctbl td{padding:12px 10px;border-bottom:1px solid var(--bdr);color:var(--mut);
+  font-weight:300;text-align:center;vertical-align:middle;}
+.ctbl td:first-child{text-align:left;font-weight:400;color:var(--wht);font-size:13px;}
+.ctbl td.ac{background:rgba(212,175,84,.04);}
+.ctbl tr.arya-r td{color:var(--gld);}
+.ctbl tr.arya-r td:first-child{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:700;}
+.tick{color:var(--sge);font-size:14px;}.cross{color:var(--rst);font-size:14px;}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;}
+.chip{background:var(--olm);border:1px solid var(--bdr);padding:6px 13px;
+  font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--mut);}
+
+/* ════════════════════════════════
+   S16 — MOAT
+════════════════════════════════ */
+#s16{background:var(--d);}
+.moat-loop{display:flex;flex-direction:column;gap:2px;margin-top:28px;}
+.ml-row{background:var(--olm);border:1px solid var(--bdr);padding:18px 22px;
+  display:flex;align-items:center;gap:20px;}
+.ml-row.gold{background:var(--gdk);border-color:var(--bdg);}
+.ml-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;
+  color:rgba(212,175,84,.2);flex-shrink:0;width:48px;}
+.ml-title{font-size:13px;font-weight:400;color:var(--wht);margin-bottom:3px;}
+.ml-desc{font-size:12px;color:var(--mut);font-weight:300;}
+.ml-arrow{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:var(--gld);flex-shrink:0;}
+
+/* ════════════════════════════════
+   S17 — SEBI
+════════════════════════════════ */
+#s17{background:var(--f);}
+
+/* ════════════════════════════════
+   S18 — FOUNDER
+════════════════════════════════ */
+#s18{background:var(--d);}
+.founder-grid{display:grid;grid-template-columns:auto 1fr;gap:52px;margin-top:28px;align-items:start;}
+@media(max-width:768px){.founder-grid{grid-template-columns:1fr;gap:24px;}}
+.f-mono{font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;
+  color:var(--gld);line-height:1;font-style:italic;
+  border:1px solid var(--bdg);width:130px;height:130px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--olm);margin-bottom:12px;flex-shrink:0;
+  box-shadow:inset 0 0 28px rgba(212,175,84,.04);}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--wht);}
+.f-title{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.17em;color:var(--gld);margin-top:3px;}
+.f-story{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.9vw,21px);
+  font-weight:300;font-style:italic;line-height:1.65;color:var(--wht);margin-bottom:24px;}
+.f-story strong{font-style:normal;font-weight:700;color:var(--gld);}
+.creds{display:flex;flex-direction:column;gap:2px;}
+.cred{background:var(--olm);border:1px solid var(--bdr);padding:12px 16px;display:flex;gap:13px;}
+.cred-tag{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.12em;
+  color:var(--gld);flex-shrink:0;margin-top:2px;width:50px;}
+.cred-txt{font-size:12px;color:var(--mut);font-weight:300;line-height:1.5;}
+.cred-txt strong{color:var(--wht);font-weight:400;}
+.special-credit{background:rgba(212,175,84,.06);border:1px solid var(--bdg);
+  padding:12px 18px;margin-top:12px;display:flex;gap:14px;align-items:center;}
+.sc-label{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.15em;color:var(--gld);}
+.sc-name{font-size:13px;font-weight:400;color:var(--wht);}
+.sc-role{font-size:11px;color:var(--mut);font-weight:300;}
+
+/* ════════════════════════════════
+   S19 — STATUS
+════════════════════════════════ */
+#s19{background:var(--f);}
+.status-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:28px;}
+@media(max-width:768px){.status-steps{grid-template-columns:1fr;}}
+.ss-c{background:var(--olm);border:1px solid var(--bdr);padding:22px 18px;position:relative;}
+.ss-c.done{border-color:rgba(78,138,94,.4);}
+.ss-c.now{background:var(--gdk);border-color:var(--bdg);}
+.ss-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--mut);margin-bottom:8px;}
+.ss-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--wht);margin-bottom:6px;}
+.ss-desc{font-size:11px;color:var(--mut);line-height:1.6;font-weight:300;}
+.ss-badge{position:absolute;top:14px;right:14px;font-family:'DM Mono',monospace;
+  font-size:7px;letter-spacing:.1em;padding:3px 8px;}
+.ss-badge.done{background:rgba(78,138,94,.15);color:#4e8a5e;border:1px solid rgba(78,138,94,.3);}
+.ss-badge.now{background:var(--gdk);color:var(--gld);border:1px solid var(--bdg);}
+
+/* ════════════════════════════════
+   S20 — ROADMAP
+════════════════════════════════ */
+#s20{background:var(--d);}
+.rm-rows{display:flex;flex-direction:column;gap:2px;margin-top:28px;}
+.rm-row{background:var(--olm);border:1px solid var(--bdr);
+  display:grid;grid-template-columns:130px 1fr auto;overflow:hidden;}
+@media(max-width:768px){.rm-row{grid-template-columns:1fr;}}
+.rm-time{background:var(--gdk);padding:18px 16px;border-right:1px solid var(--bdr);display:flex;flex-direction:column;justify-content:center;}
+.rm-period{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.12em;color:var(--gld);margin-bottom:3px;}
+.rm-pname{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--wht);font-style:italic;}
+.rm-body{padding:16px 22px;}
+.rm-goal{font-size:12px;color:var(--mut);line-height:1.65;font-weight:300;}
+.rm-goal strong{color:var(--wht);font-weight:400;}
+.rm-metric{padding:12px 20px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;border-left:1px solid var(--bdr);min-width:80px;}
+.rmm-n{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--gld);line-height:1;}
+.rmm-l{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.1em;color:var(--mut);margin-top:2px;text-align:center;}
+
+/* ════════════════════════════════
+   S21 — ASK
+════════════════════════════════ */
+#s21{background:var(--f);}
+.ask-num{font-family:'Cormorant Garamond',serif;font-size:clamp(60px,10vw,106px);
+  font-weight:300;color:var(--gld);line-height:1;margin-bottom:4px;}
+.ask-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--mut);margin-bottom:28px;}
+.use-rows{display:flex;flex-direction:column;gap:2px;}
+.use-row{background:var(--olm);border:1px solid var(--bdr);padding:13px 16px;
+  display:flex;justify-content:space-between;align-items:center;}
+.ur-l{font-size:13px;color:var(--mut);font-weight:300;}
+.ur-p{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gld);}
+.closing{background:var(--gdk);border:1px solid var(--bdg);padding:32px;position:relative;}
+.closing::before,.closing::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--gld);border-style:solid;}
+.closing::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.closing::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.ct{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,1.8vw,19px);
+  font-weight:300;font-style:italic;line-height:1.7;color:var(--wht);margin-bottom:22px;}
+.ct strong{font-style:normal;font-weight:700;color:var(--gld);}
+.csig{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:var(--mut);
+  line-height:1.9;border-top:1px solid var(--bdg);padding-top:16px;}
+
+/* ════════════════════════════════
+   S22 — VISION
+════════════════════════════════ */
+#s22{background:var(--d);}
+.vision-four{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:28px 0;}
+@media(max-width:768px){.vision-four{grid-template-columns:1fr 1fr;}}
+.vis-c{background:var(--olm);border:1px solid var(--bdr);padding:22px 16px;text-align:center;}
+.vis-c.arya{background:var(--gdk);border-color:var(--bdg);}
+.vis-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--wht);margin-bottom:4px;}
+.vis-c.arya .vis-name{color:var(--gld);}
+.vis-desc{font-size:11px;color:var(--mut);line-height:1.5;font-weight:300;}
+.vision-final{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,34px);
+  font-weight:300;font-style:italic;line-height:1.45;color:var(--wht);
+  text-align:center;border-top:1px solid var(--bdg);padding-top:28px;}
+.vision-final strong{font-style:normal;font-weight:700;color:var(--gld);}
+
+/* SCROLL HINT */
+.sh{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.22em;
+  color:var(--fnt);display:flex;flex-direction:column;align-items:center;gap:7px;
+  animation:breathe 2.5s infinite;z-index:50;transition:opacity .5s;}
+.sh-line{width:1px;height:26px;background:linear-gradient(to bottom,var(--gld),transparent);}
+@keyframes breathe{0%,100%{opacity:.2}50%{opacity:.8}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ARYA</div>
+  <div class="nav-r">
+    <div class="nav-lbl" id="nlbl">THE VISION</div>
+    <div class="ndots" id="ndots"></div>
+  </div>
+</nav>
+
+<!-- ══════════════ S1 COVER ══════════════ -->
+<section class="slide" id="s1">
+  <div class="s1-bg"></div>
+  <svg class="crest" viewBox="0 0 520 520" fill="none">
+    <circle cx="260" cy="260" r="248" stroke="#d4af54" stroke-width=".6"/>
+    <circle cx="260" cy="260" r="178" stroke="#d4af54" stroke-width=".4"/>
+    <circle cx="260" cy="260" r="108" stroke="#d4af54" stroke-width=".4"/>
+    <circle cx="260" cy="260" r="42" stroke="#d4af54" stroke-width=".9"/>
+    <line x1="12" y1="260" x2="508" y2="260" stroke="#d4af54" stroke-width=".35"/>
+    <line x1="260" y1="12" x2="260" y2="508" stroke="#d4af54" stroke-width=".35"/>
+    <line x1="84" y1="84" x2="436" y2="436" stroke="#d4af54" stroke-width=".28"/>
+    <line x1="436" y1="84" x2="84" y2="436" stroke="#d4af54" stroke-width=".28"/>
+    <polygon points="260,20 492,150 492,370 260,500 28,370 28,150" stroke="#d4af54" stroke-width=".45" fill="none"/>
+    <polygon points="260,70 462,182 462,338 260,450 58,338 58,182" stroke="#d4af54" stroke-width=".35" fill="none"/>
+  </svg>
+  <div class="s1-inner">
+    <div class="s1-ey">CONFIDENTIAL · PRE-SEED · 2025 · INDIA</div>
+    <div class="s1-nm">ARY<span>A</span></div>
+    <div class="s1-rule"></div>
+    <div class="s1-tl">The Independent Financial Intelligence & Execution Standard.</div>
+    <div class="s1-desc">India's first AI-native certification infrastructure connecting investment intelligence, broker execution, and independent audit — trusted by HNIs, demanded by QIBs, powered by the institutions that run India's wealth.</div>
+    <div class="s1-meta">
+      <div><div class="s1-mk">FOUNDER</div><div class="s1-mv">Priya Indrani</div></div>
+      <div><div class="s1-mk">INSTITUTION</div><div class="s1-mv">CDAC — India's Supercomputer Lab</div></div>
+      <div><div class="s1-mk">STAGE</div><div class="s1-mv">Pre-Seed · $500K</div></div>
+      <div><div class="s1-mk">MODEL</div><div class="s1-mv">B2B · Broker-First</div></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">01 / 22</div></div>
+</section>
+
+<!-- ══════════════ S2 PROBLEM ══════════════ -->
+<section class="slide" id="s2">
+  <div class="sc d1"><div class="tag">THE PROBLEM</div></div>
+  <div class="sc d2"><h2 class="hl">₹1.6 trillion of wealth.<br><em>Zero independent<br>execution standard.</em></h2></div>
+  <div class="two">
+    <div class="sc d3">
+      <p class="bq">"Every investor trusts their broker. But <strong>no investor can independently verify</strong> that their broker executed their exact intention — at the right time, in the right quantity, without advance knowledge of the instruction."</p>
+      <div class="pain-list">
+        <div class="pain"><span class="px">✗</span><div class="pt">HNIs have no independent record of the intelligence-to-execution chain</div></div>
+        <div class="pain"><span class="px">✗</span><div class="pt">QIBs need execution audit trails for compliance — none exist independently</div></div>
+        <div class="pain"><span class="px">✗</span><div class="pt">Brokers cannot prove execution quality to premium clients</div></div>
+        <div class="pain"><span class="px">✗</span><div class="pt">SIPs and recurring instructions give brokers advance knowledge of trades</div></div>
+        <div class="pain"><span class="px">✗</span><div class="pt">Tax intelligence fragmented — no unified, optimized, conflict-free view</div></div>
+      </div>
+    </div>
+    <div class="sc d4">
+      <div class="stat-grid">
+        <div class="stat-c"><span class="stat-n">₹50L Cr</span><div class="stat-l">EQUITY AUM IN INDIAN MARKETS</div></div>
+        <div class="stat-c"><span class="stat-n">15Cr+</span><div class="stat-l">DEMAT ACCOUNTS GROWING 30% YOY</div></div>
+        <div class="stat-c"><span class="stat-n">8.5L+</span><div class="stat-l">HNIs WITH ₹5CR+ INVESTABLE WEALTH</div></div>
+        <div class="stat-c"><span class="stat-n">₹0</span><div class="stat-l">INDEPENDENT EXECUTION STANDARD EXISTS</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">02 / 22</div></div>
+</section>
+
+<!-- ══════════════ S3 ARCHITECTURE GAP ══════════════ -->
+<section class="slide" id="s3">
+  <div class="sc d1"><div class="tag">THE ARCHITECTURE GAP</div></div>
+  <div class="sc d2"><h2 class="hl">What actually sits between<br><em>investor intention</em><br>and broker execution?</h2></div>
+  <div class="sc d3"><p class="sub">Today the chain is opaque. The investor sets an intention. The broker executes. Nothing independent sits in between to certify, time, and audit the complete chain.</p></div>
+  <div class="sc d3">
+    <div class="gap-flow">
+      <div class="gf-row">
+        <div class="gf-box exists"><div class="gf-tag">EXISTS</div><div class="gf-name">Investor Portfolio Intelligence</div></div>
+        <div class="gf-arrow">→</div>
+        <div class="gf-box missing"><div class="gf-tag red">MISSING</div><div class="gf-name">Independent Signal Certification</div></div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-box missing"><div class="gf-tag red">MISSING</div><div class="gf-name">Authenticated Instruction Record</div></div>
+        <div class="gf-arrow">→</div>
+        <div class="gf-box exists"><div class="gf-tag">EXISTS</div><div class="gf-name">Broker Order Execution</div></div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-box exists"><div class="gf-tag">EXISTS</div><div class="gf-name">Broker Internal Records</div></div>
+        <div class="gf-arrow">→</div>
+        <div class="gf-box missing"><div class="gf-tag red">MISSING</div><div class="gf-name">Independent Execution Audit</div></div>
+      </div>
+      <div class="gf-row">
+        <div class="gf-box arya" style="grid-column:1/-1;"><div class="gf-tag">ARYA FILLS THIS</div><div class="gf-name">Intelligence → Certified Signal → Broker Execution → Independent Audit Chain</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">03 / 22</div></div>
+</section>
+
+<!-- ══════════════ S4 WHY NOW ══════════════ -->
+<section class="slide" id="s4">
+  <div class="sc d1"><div class="tag">WHY NOW</div></div>
+  <div class="sc d2"><h2 class="hl">Four forces converging.<br><em>One window. Right now.</em></h2></div>
+  <div class="sc d3">
+    <div class="now-grid">
+      <div class="now-c"><div class="now-icon">📋</div><div class="now-title">SEBI Jan 2025</div><div class="now-desc">SEBI's new system audit framework explicitly requires unique identifiers for algo orders and broker audit trails. ARYA standardises the investor-facing layer this framework is pointing toward.</div></div>
+      <div class="now-c"><div class="now-icon">📊</div><div class="now-title">2024 LTCG Changes</div><div class="now-desc">New LTCG and STCG rules made tax optimization urgent overnight for every Indian equity investor. The pain is real, measurable, and immediate — ARYA's intelligence layer solves it directly.</div></div>
+      <div class="now-c"><div class="now-icon">⚡</div><div class="now-title">AI Cost Collapse</div><div class="now-desc">Institutional-grade portfolio intelligence is now available at consumer price points for the first time. The technology to build ARYA's intelligence layer has arrived — affordable and production-ready.</div></div>
+      <div class="now-c"><div class="now-icon">🏗️</div><div class="now-title">Broker APIs Maturing</div><div class="now-desc">Zerodha, Groww and Angel One now expose data APIs that make multi-broker aggregation and signal delivery technically viable. This infrastructure didn't exist three years ago.</div></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">04 / 22</div></div>
+</section>
+
+<!-- ══════════════ S5 THE INSIGHT ══════════════ -->
+<section class="slide" id="s5">
+  <div class="sc d1"><div class="tag">THE CIBIL + BLOOMBERG + ISO INSIGHT</div></div>
+  <div class="sc d2"><h2 class="hl">Three trusted financial concepts.<br><em>One new category.</em></h2></div>
+  <div class="sc d3">
+    <div class="insight-four">
+      <div class="ins-c">
+        <div class="ins-name">CIBIL</div>
+        <div class="ins-role">CREDIT INTELLIGENCE</div>
+        <div class="ins-item">Independent credit score</div>
+        <div class="ins-item">Used by every lender</div>
+        <div class="ins-item">Does not lend money</div>
+        <div class="ins-item">Indispensable infrastructure</div>
+      </div>
+      <div class="ins-c">
+        <div class="ins-name">Bloomberg</div>
+        <div class="ins-role">MARKET INTELLIGENCE</div>
+        <div class="ins-item">Independent market data</div>
+        <div class="ins-item">Used by all institutions</div>
+        <div class="ins-item">Does not execute trades</div>
+        <div class="ins-item">$25K/year · irreplaceable</div>
+      </div>
+      <div class="ins-c">
+        <div class="ins-name">ISO</div>
+        <div class="ins-role">PROCESS CERTIFICATION</div>
+        <div class="ins-item">Defined quality standard</div>
+        <div class="ins-item">Certification bodies audit</div>
+        <div class="ins-item">Does not manufacture</div>
+        <div class="ins-item">ISO 9001 = trust signal</div>
+      </div>
+      <div class="ins-c arya">
+        <div class="ins-name">ARYA</div>
+        <div class="ins-role">EXECUTION INTELLIGENCE & TRUST</div>
+        <div class="ins-item">Investment intelligence layer</div>
+        <div class="ins-item">ARYA Certified Broker™</div>
+        <div class="ins-item">Authenticated signals</div>
+        <div class="ins-item">Independent audit · new category</div>
+      </div>
+    </div>
+  </div>
+  <div class="sc d4">
+    <div class="bq">"CIBIL made credit verifiable. Bloomberg made markets transparent. ISO made processes certifiable. <strong>ARYA makes wealth execution independently auditable</strong> — for the first time."</div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">05 / 22</div></div>
+</section>
+
+<!-- ══════════════ S6 DEMAND ENGINE ══════════════ -->
+<section class="slide" id="s6">
+  <div class="sc d1"><div class="tag">THE DEMAND ENGINE</div></div>
+  <div class="sc d2"><h2 class="hl">HNIs and QIBs <em>demand</em> verified<br>execution. Brokers <em>pay</em> ARYA<br>to prove it.</h2></div>
+  <div class="de-grid">
+    <div class="sc d3">
+      <div class="de-data">
+        <div class="de-row">
+          <div class="de-label"><strong>Ultra HNI · ₹25Cr+ wealth</strong>Demand independent audit trail for every trade. Fiduciary accountability to families and trustees.</div>
+          <div class="de-num">1.5L</div>
+        </div>
+        <div class="de-row">
+          <div class="de-label"><strong>HNI · ₹5Cr–25Cr wealth</strong>Want execution transparency. Currently have no independent record of their broker's actions.</div>
+          <div class="de-num">7L+</div>
+        </div>
+        <div class="de-row">
+          <div class="de-label"><strong>QIB · Mutual Funds, FIIs, Banks</strong>Require execution audit trails for compliance. Cannot demonstrate best execution without one.</div>
+          <div class="de-num">₹140L Cr</div>
+        </div>
+        <div class="de-row">
+          <div class="de-label"><strong>Family Offices · India</strong>Sophisticated investors managing generational wealth. Demand institutional-grade execution standards.</div>
+          <div class="de-num">500+</div>
+        </div>
+        <div class="de-row">
+          <div class="de-label"><strong>ARYA Certified Brokers · demand</strong>Premium clients actively prefer ARYA Certified brokers. Certification becomes the acquisition edge.</div>
+          <div class="de-num">₹ Win</div>
+        </div>
+      </div>
+    </div>
+    <div class="sc d4">
+      <div class="de-chain">
+        <div class="de-chain-row">
+          <div class="de-ico">🏛️</div>
+          <div><div class="de-chain-title">QIBs & Ultra HNIs Demand Proof</div><div class="de-chain-desc">Compliance obligations and fiduciary duty require independently verified execution records</div></div>
+        </div>
+        <div class="de-arrow">↓ demand flows down</div>
+        <div class="de-chain-row">
+          <div class="de-ico">👥</div>
+          <div><div class="de-chain-title">HNIs Prefer Certified Brokers</div><div class="de-chain-desc">ARYA Certified badge becomes a visible trust differentiator when choosing between brokers</div></div>
+        </div>
+        <div class="de-arrow">↓ brokers respond</div>
+        <div class="de-chain-row gold">
+          <div class="de-ico">💼</div>
+          <div><div class="de-chain-title">Brokers Get ARYA Certified</div><div class="de-chain-desc">Brokers pay ARYA for certification to attract and retain premium HNI and QIB clients</div></div>
+        </div>
+        <div class="de-arrow">↓ ARYA never touches a trade</div>
+        <div class="de-chain-row gold">
+          <div class="de-ico">🔒</div>
+          <div><div class="de-chain-title">ARYA Produces Intelligence + Audit</div><div class="de-chain-desc">Structural conflict-free position — we certify the process, we never execute the trade</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">06 / 22</div></div>
+</section>
+
+<!-- ══════════════ S7 WHAT IS ARYA ══════════════ -->
+<section class="slide" id="s7">
+  <div class="sc d1"><div class="tag">WHAT IS ARYA</div></div>
+  <div class="sc d2"><h2 class="hl">One platform.<br><em>Three defensible layers.</em></h2></div>
+  <div class="sc d3">
+    <div class="arya-three">
+      <div class="a3-c"><div class="a3-bar" style="background:var(--sge);"></div>
+        <div class="a3-num">1</div>
+        <div class="a3-title">Intelligence</div>
+        <div class="a3-sub">AI-NATIVE WEALTH OPTIMIZATION</div>
+        <div class="a3-items">
+          <div class="a3-item">Multi-broker portfolio aggregation</div>
+          <div class="a3-item">AI Tax Loss Harvesting — LTCG/STCG</div>
+          <div class="a3-item">Smart re-entry signals</div>
+          <div class="a3-item">Regulatory RAG — Finance Acts, CBDT</div>
+          <div class="a3-item">Portfolio risk intelligence</div>
+          <div class="a3-item">SIP timing optimization</div>
+        </div>
+      </div>
+      <div class="a3-c"><div class="a3-bar" style="background:var(--gld);"></div>
+        <div class="a3-num">2</div>
+        <div class="a3-title">Certification</div>
+        <div class="a3-sub">ARYA CERTIFIED™ STANDARD</div>
+        <div class="a3-items">
+          <div class="a3-item">ARYA Standard definition v1</div>
+          <div class="a3-item">Broker certification program</div>
+          <div class="a3-item">Cryptographically signed signals</div>
+          <div class="a3-item">Investor authorization controls</div>
+          <div class="a3-item">ARYA Certified Broker™ badge</div>
+          <div class="a3-item">Annual certification renewal</div>
+        </div>
+      </div>
+      <div class="a3-c"><div class="a3-bar" style="background:var(--rst);"></div>
+        <div class="a3-num">3</div>
+        <div class="a3-title">Audit</div>
+        <div class="a3-sub">INDEPENDENT EXECUTION VERIFICATION</div>
+        <div class="a3-items">
+          <div class="a3-item">Signal-to-execution chain record</div>
+          <div class="a3-item">Timestamped broker reconciliation</div>
+          <div class="a3-item">Anomaly detection and flagging</div>
+          <div class="a3-item">ARYA Execution Certificate™</div>
+          <div class="a3-item">Exportable evidence package</div>
+          <div class="a3-item">QIB-grade compliance documentation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">07 / 22</div></div>
+</section>
+
+<!-- ══════════════ S8 ARYA STANDARD ══════════════ -->
+<section class="slide" id="s8">
+  <div class="sc d1"><div class="tag">THE ARYA STANDARD</div></div>
+  <div class="sc d2"><h2 class="hl">What certification<br><em>actually measures.</em></h2></div>
+  <div class="sc d3"><p class="sub">ARYA Certified is an ISO-style standard for broker execution — defined, measurable, independently auditable. Not a promise. A process standard.</p></div>
+  <div class="sc d3">
+    <div class="four">
+      <div class="card">
+        <div class="tag" style="margin-bottom:14px;">PILLAR 01</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--gld);margin-bottom:12px;">Signal Integrity</div>
+        <div class="kp-list" style="margin-top:0;">
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Authentication</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Timestamping</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Unique signal ID</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Data integrity hash</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag" style="margin-bottom:14px;">PILLAR 02</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--gld);margin-bottom:12px;">Authorization</div>
+        <div class="kp-list" style="margin-top:0;">
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Investor consent</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Scope of authority</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Revocation handling</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Access controls</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag" style="margin-bottom:14px;">PILLAR 03</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--gld);margin-bottom:12px;">Execution</div>
+        <div class="kp-list" style="margin-top:0;">
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">API handling standards</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Receipt timestamps</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Order mapping</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Fill reconciliation</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag" style="margin-bottom:14px;">PILLAR 04</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--gld);margin-bottom:12px;">Audit</div>
+        <div class="kp-list" style="margin-top:0;">
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Immutable records</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Exception reporting</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Retention policy</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Independent review</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">08 / 22</div></div>
+</section>
+
+<!-- ══════════════ S9 THE FLOW ══════════════ -->
+<section class="slide" id="s9">
+  <div class="sc d1"><div class="tag">THE ARYA CERTIFIED FLOW</div></div>
+  <div class="sc d2"><h2 class="hl">From investor intention<br>to <em>independently verified</em><br>execution in six steps.</h2></div>
+  <div class="sc d3">
+    <div class="flow-steps">
+      <div class="fs-row"><div class="fs-num"><div class="fs-n">1</div></div><div class="fs-body"><div class="fs-title">Investor Authorizes ARYA</div><div class="fs-desc">Investor sets mandate and limits. ARYA stores key in investor's own Google account. Zero custody.</div></div><div class="fs-badge"><div class="fs-status">AUTHORIZED</div></div></div>
+      <div class="fs-row"><div class="fs-num"><div class="fs-n">2</div></div><div class="fs-body"><div class="fs-title">ARYA Intelligence Generates Signal</div><div class="fs-desc">AI analyzes portfolio, tax position, market conditions. Produces ARYA Certified Signal with hash + timestamp.</div></div><div class="fs-badge"><div class="fs-status">SIGNED</div></div></div>
+      <div class="fs-row"><div class="fs-num"><div class="fs-n">3</div></div><div class="fs-body"><div class="fs-title">Signal Transmitted to ARYA Certified Broker</div><div class="fs-desc">Authenticated instruction reaches broker API. Broker does not know the specific signal until this moment.</div></div><div class="fs-badge"><div class="fs-status">RECEIVED</div></div></div>
+      <div class="fs-row"><div class="fs-num"><div class="fs-n">4</div></div><div class="fs-body"><div class="fs-title">Broker Executes on Exchange</div><div class="fs-desc">ARYA Certified Broker executes per the certified instruction. ARYA never touches the trade.</div></div><div class="fs-badge"><div class="fs-status">EXECUTED</div></div></div>
+      <div class="fs-row"><div class="fs-num"><div class="fs-n">5</div></div><div class="fs-body"><div class="fs-title">ARYA Reconciles Signal vs Execution</div><div class="fs-desc">Independent record of signal compared to broker fill. Timestamps, quantities, prices, exceptions all checked.</div></div><div class="fs-badge"><div class="fs-status">VERIFIED</div></div></div>
+      <div class="fs-row" style="background:var(--gdk);border-color:var(--bdg);"><div class="fs-num"><div class="fs-n" style="color:var(--gld);">✓</div></div><div class="fs-body"><div class="fs-title">ARYA Execution Certificate™ Issued</div><div class="fs-desc">Investor receives exportable, signed evidence package. Complete chain from intention to execution — independently verified.</div></div><div class="fs-badge"><div class="fs-status">CERTIFIED</div></div></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">09 / 22</div></div>
+</section>
+
+<!-- ══════════════ S10 WIREFRAME: DASHBOARD ══════════════ -->
+<section class="slide laptop-slide" id="s10">
+  <div class="sc d1"><div class="tag">PRODUCT · NEAR MVP · app.arya.finance</div></div>
+  <div class="sc d2"><h2 class="hl">Investor <em>Results Dashboard</em></h2></div>
+  <div class="laptop-wrap">
+    <div class="laptop-info sc d3">
+      <div class="laptop-url">app.arya.finance/dashboard</div>
+      <h3>Tax Intelligence at a Glance</h3>
+      <p>The investor's unified view across all brokers — tax savings found, LTCG exposure, TLH opportunities — in one conflict-free dashboard.</p>
+      <div class="laptop-feat">
+        <div class="lf">₹1,87,400 in tax savings identified for FY25–26</div>
+        <div class="lf">7 TLH opportunities across 2 brokers, 46 positions</div>
+        <div class="lf">LTCG exemption tracker — ₹1.25L used of ₹1.25L</div>
+        <div class="lf">One-tap: Download Report · Share with CA</div>
+      </div>
+    </div>
+    <div class="laptop-frame sc d4">
+      <div class="laptop-shell">
+        <div class="laptop-bar">
+          <div class="lb-dot"></div><div class="lb-dot"></div><div class="lb-dot"></div>
+          <div class="laptop-url-bar">app.arya.finance/dashboard</div>
+        </div>
+        <div class="laptop-screen">
+          <div class="sc-dashboard">
+            <div class="sc-topbar">
+              <div class="sc-logo">ARYA</div>
+              <div style="display:flex;gap:8px;font-family:'DM Mono',monospace;font-size:7px;color:rgba(242,232,208,.4);">
+                <span>FY 2025–26</span><span>·</span><span>All Brokers</span><span>·</span><span>Updated 09:42</span>
+              </div>
+              <div class="sc-badge">Conflict-Free ✓</div>
+            </div>
+            <div class="sc-kpis">
+              <div class="sc-kpi"><div class="sc-kpi-l">PORTFOLIO VALUE</div><div class="sc-kpi-v">₹24.5L</div><div class="sc-kpi-s">2 brokers · 46 pos</div></div>
+              <div class="sc-kpi"><div class="sc-kpi-l">TAX SAVINGS FOUND</div><div class="sc-kpi-v">₹1.87L</div><div class="sc-kpi-s">⚠ Act by Mar 31</div></div>
+              <div class="sc-kpi"><div class="sc-kpi-l">LTCG EXPOSURE</div><div class="sc-kpi-v">₹8.2L</div><div class="sc-kpi-s">₹1.25L exempt ✓</div></div>
+              <div class="sc-kpi"><div class="sc-kpi-l">TLH OPPORTUNITIES</div><div class="sc-kpi-v">7</div><div class="sc-kpi-s">₹45.2K top pick</div></div>
+            </div>
+            <div class="sc-row">
+              <div class="sc-panel">
+                <div class="sc-panel-t">Tax Savings by Month (₹)</div>
+                <div class="mini-bars">
+                  <div class="mini-bar" style="height:30%;"></div>
+                  <div class="mini-bar" style="height:45%;"></div>
+                  <div class="mini-bar" style="height:60%;"></div>
+                  <div class="mini-bar" style="height:52%;"></div>
+                  <div class="mini-bar" style="height:85%;"></div>
+                  <div class="mini-bar" style="height:72%;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:7px;color:rgba(242,232,208,.3);margin-top:4px;font-family:'DM Mono',monospace;">
+                  <span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
+                </div>
+              </div>
+              <div class="sc-panel">
+                <div class="sc-panel-t">Top Harvesting Opportunities</div>
+                <div class="harvest-item"><span class="hi-name">HDFC Bank</span><span class="hi-amt">₹45.2K</span><div class="hi-btn">Harvest</div></div>
+                <div class="harvest-item"><span class="hi-name">TCS</span><span class="hi-amt">₹28.7K</span><div class="hi-btn">Harvest</div></div>
+                <div class="harvest-item"><span class="hi-name">Infosys</span><span class="hi-amt">₹18.9K</span><div class="hi-btn">Review</div></div>
+                <div class="harvest-item"><span class="hi-name">Reliance</span><span class="hi-amt">₹12.4K</span><div class="hi-btn">Review</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+      <div class="laptop-foot"></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">10 / 22</div></div>
+</section>
+
+<!-- ══════════════ S11 WIREFRAME: BROKER ══════════════ -->
+<section class="slide laptop-slide" id="s11">
+  <div class="sc d1"><div class="tag">PRODUCT · NEAR MVP · broker.arya.finance</div></div>
+  <div class="sc d2"><h2 class="hl"><em>ARYA Certified Broker</em><br>Dashboard</h2></div>
+  <div class="laptop-wrap">
+    <div class="laptop-info sc d3">
+      <div class="laptop-url">broker.arya.finance/certification</div>
+      <h3>The Broker's Trust Dashboard</h3>
+      <p>ARYA Certified brokers see their certification status, ARYA investor count, signals executed, and audit coverage — the metrics HNIs and QIBs ask about.</p>
+      <div class="laptop-feat">
+        <div class="lf">ARYA CERTIFIED ✓ badge — publicly displayed</div>
+        <div class="lf">48,216 ARYA investors trusting this broker</div>
+        <div class="lf">1,284,520 signals executed · last 30 days</div>
+        <div class="lf">99.98% audit coverage · signal → execution matched</div>
+      </div>
+    </div>
+    <div class="laptop-frame sc d4">
+      <div class="laptop-shell">
+        <div class="laptop-bar">
+          <div class="lb-dot"></div><div class="lb-dot"></div><div class="lb-dot"></div>
+          <div class="laptop-url-bar">broker.arya.finance/certification</div>
+        </div>
+        <div class="laptop-screen">
+          <div class="sc-broker">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+              <div style="font-size:10px;color:rgba(242,232,208,.6);">Broker Overview</div>
+              <div class="cert-badge-big">ARYA CERTIFIED ✓</div>
+            </div>
+            <div class="sc-bkpis">
+              <div class="sc-kpi"><div class="sc-kpi-l">STATUS</div><div class="sc-kpi-v" style="font-size:14px;">ACTIVE</div><div class="sc-kpi-s">Review: Aug 2027</div></div>
+              <div class="sc-kpi"><div class="sc-kpi-l">ARYA INVESTORS</div><div class="sc-kpi-v">48,216</div><div class="sc-kpi-s">+8.4% this quarter</div></div>
+              <div class="sc-kpi"><div class="sc-kpi-l">SIGNALS</div><div class="sc-kpi-v" style="font-size:12px;">1.28M</div><div class="sc-kpi-s">Last 30 days</div></div>
+              <div class="sc-kpi"><div class="sc-kpi-l">AUDIT COVERAGE</div><div class="sc-kpi-v">99.98%</div><div class="sc-kpi-s">Signal matched ✓</div></div>
+            </div>
+            <div style="font-size:9px;color:rgba(242,232,208,.4);margin-bottom:6px;">Investor Adoption by Source</div>
+            <div class="sc-inv-list">
+              <div class="sc-inv-bar"><span class="inv-name">Zerodha</span><span class="inv-count">18,420</span><div class="inv-bar-fill" style="--w:78%;"><div style="position:absolute;left:0;top:0;bottom:0;width:78%;background:#4e8a5e;border-radius:2px;"></div></div><span class="inv-pct">38.2%</span></div>
+              <div class="sc-inv-bar"><span class="inv-name">Groww</span><span class="inv-count">12,860</span><div class="inv-bar-fill"><div style="position:absolute;left:0;top:0;bottom:0;width:55%;background:#4e8a5e;border-radius:2px;"></div></div><span class="inv-pct">26.7%</span></div>
+              <div class="sc-inv-bar"><span class="inv-name">Broker internal</span><span class="inv-count">9,430</span><div class="inv-bar-fill"><div style="position:absolute;left:0;top:0;bottom:0;width:40%;background:#4e8a5e;border-radius:2px;"></div></div><span class="inv-pct">19.6%</span></div>
+              <div class="sc-inv-bar"><span class="inv-name">Other linked</span><span class="inv-count">7,506</span><div class="inv-bar-fill"><div style="position:absolute;left:0;top:0;bottom:0;width:30%;background:#4e8a5e;border-radius:2px;"></div></div><span class="inv-pct">15.5%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+      <div class="laptop-foot"></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">11 / 22</div></div>
+</section>
+
+<!-- ══════════════ S12 WIREFRAME: AUDIT TRAIL ══════════════ -->
+<section class="slide laptop-slide" id="s12">
+  <div class="sc d1"><div class="tag">PRODUCT · NEAR MVP · investor.arya.finance</div></div>
+  <div class="sc d2"><h2 class="hl">Signal → Execution<br><em>Audit Trail</em></h2></div>
+  <div class="laptop-wrap">
+    <div class="laptop-info sc d3">
+      <div class="laptop-url">investor.arya.finance/audit/ARYA-2026-001842</div>
+      <h3>Every Trade. Independently Verifiable.</h3>
+      <p>The investor's complete evidence chain — from the moment they authorized ARYA, through signal generation, broker receipt, exchange execution, and final reconciliation.</p>
+      <div class="laptop-feat">
+        <div class="lf">Cryptographically signed signal hash</div>
+        <div class="lf">Millisecond-precision timestamp at every step</div>
+        <div class="lf">Signal ↔ order ↔ fill matched and verified</div>
+        <div class="lf">Exportable signed evidence package for compliance</div>
+      </div>
+    </div>
+    <div class="laptop-frame sc d4">
+      <div class="laptop-shell">
+        <div class="laptop-bar">
+          <div class="lb-dot"></div><div class="lb-dot"></div><div class="lb-dot"></div>
+          <div class="laptop-url-bar">investor.arya.finance/audit/ARYA-2026-001842</div>
+        </div>
+        <div class="laptop-screen">
+          <div class="sc-audit">
+            <div class="audit-hdr">
+              <div class="audit-id">Signal ID: ARYA-2026-001842</div>
+              <div class="audit-match">MATCHED ✓</div>
+            </div>
+            <div class="audit-steps">
+              <div class="audit-step"><div class="audit-dot"></div><div class="as-time">09:29:58.120</div><div class="as-evt"><strong style="color:rgba(242,232,208,.8);">Investor authorization</strong><br>SIP instruction authorized · ₹10,000</div><div class="as-status ok">AUTHORIZED</div></div>
+              <div class="audit-step"><div class="audit-dot"></div><div class="as-time">09:30:00.004</div><div class="as-evt"><strong style="color:rgba(242,232,208,.8);">ARYA signal generated</strong><br>NIFTY 50 Index Fund · BUY · ₹10,000</div><div class="as-status ok">SIGNED</div></div>
+              <div class="audit-step"><div class="audit-dot"></div><div class="as-time">09:30:00.011</div><div class="as-evt"><strong style="color:rgba(242,232,208,.8);">Signal transmitted</strong><br>Broker API · request ID BRK-88321</div><div class="as-status ok">RECEIVED</div></div>
+              <div class="audit-step"><div class="audit-dot"></div><div class="as-time">09:30:00.126</div><div class="as-evt"><strong style="color:rgba(242,232,208,.8);">Broker order created</strong><br>Order ID 90018421</div><div class="as-status ok">ACCEPTED</div></div>
+              <div class="audit-step"><div class="audit-dot"></div><div class="as-time">09:30:01.804</div><div class="as-evt"><strong style="color:rgba(242,232,208,.8);">Exchange execution</strong><br>12.483 units · ₹801.09 avg</div><div class="as-status ok">EXECUTED</div></div>
+              <div class="audit-step"><div class="audit-dot" style="background:var(--gld);"></div><div class="as-time">09:30:01.920</div><div class="as-evt"><strong style="color:var(--gld);">ARYA reconciliation</strong><br>Signal ↔ order ↔ fill matched · hash: 8c7e…91a2</div><div class="as-status ok">VERIFIED</div></div>
+            </div>
+            <div style="background:rgba(78,138,94,.08);border:1px solid rgba(78,138,94,.2);padding:6px 10px;margin-top:8px;font-family:'DM Mono',monospace;font-size:7px;color:rgba(78,138,94,.7);">
+              Audit export: investor authorization · signed signal · API receipt · broker order · exchange fill · reconciliation hash
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+      <div class="laptop-foot"></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">12 / 22</div></div>
+</section>
+
+<!-- ══════════════ S13 BUSINESS MODEL ══════════════ -->
+<section class="slide" id="s13">
+  <div class="sc d1"><div class="tag">BUSINESS MODEL</div></div>
+  <div class="sc d2"><h2 class="hl">Four revenue streams.<br><em>Broker-first. Scales to institutional.</em></h2></div>
+  <div class="sc d3">
+    <div class="bm-cards">
+      <div class="bm-c"><div class="bm-bar" style="background:var(--sge);"></div>
+        <div class="bm-phase">STREAM 01 · IMMEDIATE</div>
+        <div class="bm-name">Certification</div>
+        <div class="bm-who">Brokers · Annual program</div>
+        <div class="bm-cta">Contact for Pilot Pricing</div>
+        <ul class="bm-feats">
+          <li class="bm-feat">Initial assessment</li>
+          <li class="bm-feat">Annual certification</li>
+          <li class="bm-feat">Periodic review</li>
+          <li class="bm-feat">ARYA Certified badge</li>
+          <li class="bm-feat">Renewal cycle</li>
+        </ul>
+      </div>
+      <div class="bm-c"><div class="bm-bar" style="background:var(--gld);"></div>
+        <div class="bm-phase">STREAM 02 · SCALE</div>
+        <div class="bm-name">Broker Platform</div>
+        <div class="bm-who">ARYA Certified Brokers</div>
+        <div class="bm-cta">Contact for API Pricing</div>
+        <ul class="bm-feats">
+          <li class="bm-feat">API / account fees</li>
+          <li class="bm-feat">Signal delivery</li>
+          <li class="bm-feat">Execution audit</li>
+          <li class="bm-feat">Analytics dashboard</li>
+          <li class="bm-feat">White-label experience</li>
+        </ul>
+      </div>
+      <div class="bm-c"><div class="bm-bar" style="background:var(--rst);"></div>
+        <div class="bm-phase">STREAM 03 · ENTERPRISE</div>
+        <div class="bm-name">Institutional</div>
+        <div class="bm-who">Family Offices · QIBs · Asset Managers</div>
+        <div class="bm-cta">Enterprise Enquiries</div>
+        <ul class="bm-feats">
+          <li class="bm-feat">Custom intelligence layer</li>
+          <li class="bm-feat">QIB compliance reporting</li>
+          <li class="bm-feat">Family office audit</li>
+          <li class="bm-feat">Institutional certificates</li>
+          <li class="bm-feat">Dedicated integration</li>
+        </ul>
+      </div>
+      <div class="bm-c"><div class="bm-bar" style="background:linear-gradient(to right,var(--gld),var(--glb));"></div>
+        <div class="bm-phase">STREAM 04 · NETWORK</div>
+        <div class="bm-name">Data Network</div>
+        <div class="bm-who">Ecosystem · Intelligence Modules</div>
+        <div class="bm-cta">Future Revenue Layer</div>
+        <ul class="bm-feats">
+          <li class="bm-feat">Execution benchmarks</li>
+          <li class="bm-feat">Broker reputation data</li>
+          <li class="bm-feat">Audit analytics</li>
+          <li class="bm-feat">Intelligence modules</li>
+          <li class="bm-feat">API ecosystem</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">13 / 22</div></div>
+</section>
+
+<!-- ══════════════ S14 MARKET ══════════════ -->
+<section class="slide" id="s14">
+  <div class="sc d1"><div class="tag">MARKET OPPORTUNITY</div></div>
+  <div class="sc d2"><h2 class="hl">India first.<br><em>Then the world.</em></h2></div>
+  <div class="two">
+    <div class="sc d3">
+      <div class="de-data">
+        <div class="de-row"><div class="de-label"><strong>India Equity AUM</strong>Total market ARYA sits inside</div><div class="de-num">₹50L Cr</div></div>
+        <div class="de-row"><div class="de-label"><strong>Demat Accounts</strong>Growing 30% year-on-year</div><div class="de-num">15Cr+</div></div>
+        <div class="de-row"><div class="de-label"><strong>HNI Segment</strong>₹5Cr+ investable wealth</div><div class="de-num">8.5L+</div></div>
+        <div class="de-row"><div class="de-label"><strong>QIB AUM</strong>MFs + FIIs + insurance + banks</div><div class="de-num">₹140L Cr</div></div>
+        <div class="de-row"><div class="de-label"><strong>CAs managing portfolios</strong>ARYA Pro channel</div><div class="de-num">150K+</div></div>
+        <div class="de-row"><div class="de-label"><strong>Bloomberg per seat</strong>Our ceiling. We are AI-native India-first.</div><div class="de-num">$25K</div></div>
+      </div>
+    </div>
+    <div class="sc d4">
+      <div class="card-g" style="margin-bottom:2px;">
+        <div class="tag" style="margin-bottom:12px;">PHASE 1 · INDIA</div>
+        <div class="kp-list" style="margin-top:0;">
+          <div class="kp"><div class="kp-d"></div><div class="kp-t"><strong>Brokers:</strong> Zerodha, Groww, Angel One, Motilal, ICICI Direct</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t"><strong>HNIs:</strong> Direct subscription via app.arya.finance</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t"><strong>CAs:</strong> ARYA Pro seat for portfolio workflow</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t"><strong>SEBI alignment:</strong> Compliance-positioned from day one</div></div>
+        </div>
+      </div>
+      <div class="card-g" style="margin-bottom:2px;">
+        <div class="tag" style="margin-bottom:12px;">PHASE 2 · USA + GLOBAL</div>
+        <div class="kp-list" style="margin-top:0;">
+          <div class="kp"><div class="kp-d"></div><div class="kp-t"><strong>USA:</strong> RIAs, broker-dealers, family offices, institutional wealth</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t"><strong>Singapore / UAE:</strong> Wealth hubs, favorable fintech regulation</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t"><strong>UK / EU / Australia:</strong> Institutional wealth infrastructure</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Core technology portable · regulatory wrapper localised</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">14 / 22</div></div>
+</section>
+
+<!-- ══════════════ S15 COMPETITIVE ══════════════ -->
+<section class="slide" id="s15">
+  <div class="sc d1"><div class="tag">COMPETITIVE LANDSCAPE</div></div>
+  <div class="sc d2"><h2 class="hl">ARYA complements existing systems.<br><em>It replaces none. It competes with nothing.</em><br>New category.</h2></div>
+  <div class="sc d3">
+    <table class="ctbl">
+      <thead><tr>
+        <th>Player</th><th>Execution</th><th>Investment Intel</th><th>Independent</th><th>Broker Cert</th><th>Execution Audit</th><th>Network Effect</th><th class="ac">ARYA</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Broker / Bank</td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+        <tr><td>Bloomberg / Data</td><td><span class="cross">✗</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+        <tr><td>TCA / Surveillance</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td>Post-trade</td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+        <tr><td>Wealthfront (US)</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+        <tr><td>INDmoney / ClearTax</td><td>Partial</td><td>Partial</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+        <tr class="arya-r"><td>ARYA</td><td class="ac">Never trades</td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac" style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;">Only one.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sc d4">
+    <div class="chips">
+      <div class="chip">CROSS-BROKER INTELLIGENCE</div>
+      <div class="chip">ARYA CERTIFIED BROKER™</div>
+      <div class="chip">STRUCTURAL CONFLICT-FREE</div>
+      <div class="chip">CRYPTOGRAPHIC AUDIT TRAIL</div>
+      <div class="chip">QIB-GRADE COMPLIANCE</div>
+      <div class="chip">SEBI-ALIGNED INFRASTRUCTURE</div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">15 / 22</div></div>
+</section>
+
+<!-- ══════════════ S16 MOAT ══════════════ -->
+<section class="slide" id="s16">
+  <div class="sc d1"><div class="tag">THE MOAT</div></div>
+  <div class="sc d2"><h2 class="hl">The standard<br><em>becomes the network.</em></h2></div>
+  <div class="sc d3">
+    <div class="moat-loop">
+      <div class="ml-row"><div class="ml-num">01</div><div><div class="ml-title">More ARYA Certified Brokers</div><div class="ml-desc">Each new broker adds accounts, execution data, and trust signal to the network</div></div><div class="ml-arrow">→</div></div>
+      <div class="ml-row"><div class="ml-num">02</div><div><div class="ml-title">More HNIs and QIBs Choose Certified Brokers</div><div class="ml-desc">Premium investors actively prefer ARYA Certified — demand creates competitive pressure on non-certified brokers</div></div><div class="ml-arrow">→</div></div>
+      <div class="ml-row"><div class="ml-num">03</div><div><div class="ml-title">More Execution Data Flows Through ARYA</div><div class="ml-desc">Signal-to-execution dataset grows — intelligence improves, benchmarks sharpen, anomaly detection strengthens</div></div><div class="ml-arrow">→</div></div>
+      <div class="ml-row"><div class="ml-num">04</div><div><div class="ml-title">ARYA Standard Becomes the Industry Reference</div><div class="ml-desc">Execution quality benchmarks, broker reputation scores, compliance reports — all anchored to ARYA</div></div><div class="ml-arrow">→</div></div>
+      <div class="ml-row gold"><div class="ml-num" style="color:var(--gld);">∞</div><div><div class="ml-title">Infrastructure That Cannot Be Replaced</div><div class="ml-desc">Once the standard is embedded in broker integrations, QIB compliance workflows and HNI trust decisions — switching cost becomes existential. The network effect compounds forever.</div></div><div class="ml-arrow">↺</div></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">16 / 22</div></div>
+</section>
+
+<!-- ══════════════ S17 SEBI ══════════════ -->
+<section class="slide" id="s17">
+  <div class="sc d1"><div class="tag">REGULATORY TAILWIND</div></div>
+  <div class="sc d2"><h2 class="hl">SEBI is already moving<br><em>toward what ARYA builds.</em></h2></div>
+  <div class="two">
+    <div class="sc d3">
+      <div class="card-g" style="margin-bottom:8px;">
+        <div class="tag" style="margin-bottom:10px;">SEBI ALREADY REQUIRES</div>
+        <div class="kp-list" style="margin-top:0;">
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Broker algo orders must have <strong>unique identifiers</strong> to establish audit trails</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Stock brokers must maintain <strong>logs of trading activities</strong> and control parameters</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">System auditors check whether <strong>audit trails can be established</strong> via unique identification</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">SEBI <strong>Jan 2025 framework</strong> strengthens technology-based monitoring of broker systems</div></div>
+          <div class="kp"><div class="kp-d"></div><div class="kp-t">Feb 2025 <strong>Retail Algo circular</strong> creates new requirements around retail automated trading</div></div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:7px;color:var(--mut);margin-top:12px;padding-top:10px;border-top:1px solid var(--bdr);">SEBI source: Chapter 2, Trading Software & Technology; Jan 31, 2025 System Audit Framework; Feb 4, 2025 Retail Algo circular</div>
+      </div>
+    </div>
+    <div class="sc d4">
+      <div class="card" style="margin-bottom:8px;">
+        <div class="tag" style="margin-bottom:10px;">THE ARYA OPPORTUNITY</div>
+        <p style="font-size:13px;color:var(--mut);line-height:1.7;margin-bottom:14px;">SEBI already creates regulatory audit requirements on the broker side. ARYA adds an <strong style="color:var(--wht);">independent, investor-readable chain</strong> that links:</p>
+        <div class="flow-steps" style="gap:1px;">
+          <div style="background:var(--olm);border:1px solid var(--bdr);padding:9px 14px;font-size:12px;color:var(--mut);">✓ Investor authorization</div>
+          <div style="background:var(--olm);border:1px solid var(--bdr);padding:9px 14px;font-size:12px;color:var(--mut);">→ ARYA signal + timestamp</div>
+          <div style="background:var(--olm);border:1px solid var(--bdr);padding:9px 14px;font-size:12px;color:var(--mut);">→ Broker receipt / order ID</div>
+          <div style="background:var(--olm);border:1px solid var(--bdr);padding:9px 14px;font-size:12px;color:var(--mut);">→ Exchange execution / fill</div>
+          <div style="background:var(--gdk);border:1px solid var(--bdg);padding:9px 14px;font-size:12px;color:var(--gld);">→ Independent reconciliation ✓</div>
+        </div>
+        <div class="bq" style="margin-top:14px;font-size:14px;">ARYA does not replace SEBI controls. It makes the <strong>investor-facing evidence layer stronger.</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">17 / 22</div></div>
+</section>
+
+<!-- ══════════════ S18 FOUNDER ══════════════ -->
+<section class="slide" id="s18">
+  <div class="sc d1"><div class="tag">THE FOUNDER</div></div>
+  <div class="founder-grid">
+    <div class="sc d2">
+      <div class="f-mono">PI</div>
+      <div class="f-name">Priya Indrani</div>
+      <div class="f-title">FOUNDER & CEO · ARYA</div>
+    </div>
+    <div>
+      <div class="sc d2">
+        <p class="f-story">"I'm 26. I research AI at <strong>CDAC — the institution that built India's first supercomputer.</strong> I've worked inside HCL and TCS. I cleared GATE. And I am building the independent intelligence and trust infrastructure that India's wealth ecosystem has never had — and cannot function without once it exists."</p>
+      </div>
+      <div class="sc d3">
+        <div class="creds">
+          <div class="cred"><div class="cred-tag">CDAC</div><div class="cred-txt"><strong>AI & Data Science Researcher</strong> — India's premier computational institution, built India's first supercomputer. Current MTech thesis is directly ARYA's architecture — one workstream, not two.</div></div>
+          <div class="cred"><div class="cred-tag">GATE</div><div class="cred-txt"><strong>GATE Qualified</strong> — Top 5% of India's engineering cohort. The quantitative rigour and systems thinking that wealth infrastructure demands.</div></div>
+          <div class="cred"><div class="cred-tag">HCL·TCS</div><div class="cred-txt"><strong>2 years inside India's largest tech enterprises</strong> — understands exactly how Indian financial systems, data pipelines and enterprise infrastructure work from the inside.</div></div>
+          <div class="cred"><div class="cred-tag">26</div><div class="cred-txt"><strong>AI-native at the right moment</strong> — young enough to build AI-first architecture, experienced enough to understand India's regulatory and institutional landscape. Building for a market she lives inside.</div></div>
+        </div>
+        <div class="special-credit">
+          <div>
+            <div class="sc-label">DOMAIN ADVISOR · SPECIAL CREDITS</div>
+            <div class="sc-name">Dr. Baidyanath Ram Prajapati</div>
+            <div class="sc-role">Retd. Associate Professor · MBA · Financial Domain Expert</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">18 / 22</div></div>
+</section>
+
+<!-- ══════════════ S19 CURRENT STATUS ══════════════ -->
+<section class="slide" id="s19">
+  <div class="sc d1"><div class="tag">CURRENT STATUS</div></div>
+  <div class="sc d2"><h2 class="hl">From concept to<br><em>working financial infrastructure.</em></h2></div>
+  <div class="sc d3">
+    <div class="status-steps">
+      <div class="ss-c done"><div class="ss-badge done">COMPLETE ✓</div><div class="ss-num">MILESTONE 01</div><div class="ss-title">Concept & Standard</div><div class="ss-desc">Broker certification + investor auditability model fully defined. ARYA Standard v0.9 drafted. Architecture validated.</div></div>
+      <div class="ss-c done"><div class="ss-badge done">COMPLETE ✓</div><div class="ss-num">MILESTONE 02</div><div class="ss-title">Demo Website</div><div class="ss-desc">Product UX and core flows visible. 12-screen wireframe built. Investor dashboard, broker console, audit trail all designed.</div></div>
+      <div class="ss-c now"><div class="ss-badge now">IN PROGRESS →</div><div class="ss-num">MILESTONE 03</div><div class="ss-title">Backend / APIs</div><div class="ss-desc">Currently building backend infrastructure and broker API integrations. Near MVP. Signal authentication layer in development.</div></div>
+      <div class="ss-c"><div class="ss-num">MILESTONE 04</div><div class="ss-title">Working MVP</div><div class="ss-desc">Complete signal → broker execution → audit trail. First end-to-end ARYA Certified flow demonstrated with a pilot broker.</div></div>
+      <div class="ss-c"><div class="ss-num">MILESTONE 05</div><div class="ss-title">Pilot</div><div class="ss-desc">Validate with initial broker partners and first institutional investors. Generate real ARYA Execution Certificates.</div></div>
+      <div class="ss-c"><div class="ss-num">MILESTONE 06</div><div class="ss-title">Market Launch</div><div class="ss-desc">First ARYA Certified Broker publicly announced. HNI and QIB demand engine activated. Seed round initiated.</div></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">19 / 22</div></div>
+</section>
+
+<!-- ══════════════ S20 ROADMAP ══════════════ -->
+<section class="slide" id="s20">
+  <div class="sc d1"><div class="tag">ROADMAP</div></div>
+  <div class="sc d2"><h2 class="hl">Standard definition<br>to <em>global financial infrastructure.</em></h2></div>
+  <div class="sc d3">
+    <div class="rm-rows">
+      <div class="rm-row"><div class="rm-time"><div class="rm-period">MONTHS 0–3</div><div class="rm-pname">Define</div></div><div class="rm-body"><div class="rm-goal"><strong>ARYA Standard v1 finalized.</strong> 3–5 broker design partners engaged. Intelligence engine v1 live. Google account key storage working. First manual HNI optimizations completed and paid.</div></div><div class="rm-metric"><div class="rmm-n">5</div><div class="rmm-l">BROKER PARTNERS</div></div></div>
+      <div class="rm-row"><div class="rm-time"><div class="rm-period">MONTHS 4–9</div><div class="rm-pname">Build</div></div><div class="rm-body"><div class="rm-goal"><strong>Broker API integration + first live pilot.</strong> CA Pro seat launched. ₹1 crore in documented tax savings for users. First ARYA Certified Signal transmitted on production. Audit trail live end-to-end.</div></div><div class="rm-metric"><div class="rmm-n">₹1Cr</div><div class="rmm-l">USER SAVINGS</div></div></div>
+      <div class="rm-row"><div class="rm-time"><div class="rm-period">MONTHS 10–18</div><div class="rm-pname">Launch</div></div><div class="rm-body"><div class="rm-goal"><strong>First ARYA Certified Broker publicly announced.</strong> Execution certificates issued at scale. 500+ HNI users. QIB pilot initiated. Seed round opened on proven metrics.</div></div><div class="rm-metric"><div class="rmm-n">1st</div><div class="rmm-l">CERTIFIED BROKER</div></div></div>
+      <div class="rm-row"><div class="rm-time"><div class="rm-period">YEAR 2</div><div class="rm-pname">Scale</div></div><div class="rm-body"><div class="rm-goal"><strong>Expand broker certification network.</strong> Institutional wealth platform integrations. International market research begun — USA RIAs, Singapore, UAE. ARYA Standard becomes industry reference.</div></div><div class="rm-metric"><div class="rmm-n">10+</div><div class="rmm-l">BROKERS CERTIFIED</div></div></div>
+      <div class="rm-row"><div class="rm-time"><div class="rm-period">YEAR 3+</div><div class="rm-pname">Platform</div></div><div class="rm-body"><div class="rm-goal"><strong>Global financial infrastructure.</strong> Every major broker, family office and QIB runs on ARYA's trust layer. Series A → B. India's Bloomberg for wealth execution.</div></div><div class="rm-metric"><div class="rmm-n">∞</div><div class="rmm-l">THE STANDARD</div></div></div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">20 / 22</div></div>
+</section>
+
+<!-- ══════════════ S21 ASK ══════════════ -->
+<section class="slide" id="s21">
+  <div class="sc d1"><div class="tag">THE ASK</div></div>
+  <div class="sc d2"><h2 class="hl">Fund the trust layer<br><em>between capital and execution.</em></h2></div>
+  <div class="two">
+    <div class="sc d3">
+      <div class="ask-num">$500K</div>
+      <div class="ask-type">PRE-SEED · SAFE OR CONVERTIBLE NOTE · 18-MONTH RUNWAY</div>
+      <div class="use-rows">
+        <div class="use-row"><div class="ur-l">AI & Engineering — Arya v1 + Signal Layer</div><div class="ur-p">40%</div></div>
+        <div class="use-row"><div class="ur-l">Broker Integrations & Certification Program</div><div class="ur-p">25%</div></div>
+        <div class="use-row"><div class="ur-l">Regulatory & Legal & Compliance</div><div class="ur-p">15%</div></div>
+        <div class="use-row"><div class="ur-l">Data, Security & Infrastructure</div><div class="ur-p">15%</div></div>
+        <div class="use-row"><div class="ur-l">Operations</div><div class="ur-p">5%</div></div>
+      </div>
+      <div style="margin-top:12px;background:var(--gdk);border:1px solid var(--bdg);padding:14px 18px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;color:var(--gld);margin-bottom:6px;">PRIMARY MILESTONE</div>
+        <div style="font-size:13px;color:var(--crm);font-weight:300;">First production ARYA Certified Broker live — with measurable signal-to-execution audit trail and HNI Execution Certificates issued.</div>
+      </div>
+    </div>
+    <div class="sc d4">
+      <div class="closing">
+        <div class="ct">"I'm 26. I research AI at the institution that built India's first supercomputer. I cleared GATE. I spent two years inside the systems I am now rebuilding as infrastructure.<br><br>
+        CIBIL built trust in credit. Bloomberg built trust in markets. ISO built trust in processes.<br><br>
+        <strong>ARYA builds trust between capital and execution.</strong><br><br>
+        We don't ask investors to trust their broker blindly. We don't ask brokers to trust the algorithm blindly. We build a system where intelligence, authorization and execution can be <strong>independently verified</strong> — for the first time in Indian wealth.<br><br>
+        The only question is whether we build it together."</div>
+        <div class="csig">
+          PRIYA INDRANI · FOUNDER & CEO, ARYA<br>
+          Researcher · CDAC — India's Supercomputer Institution<br>
+          GATE Qualified · HCL · TCS · AI & Data Science · Age 26<br>
+          priyaindrani999@gmail.com<br>
+          linkedin.com/in/priya-indrani-59b928212<br>
+          app.arya.finance
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">21 / 22</div></div>
+</section>
+
+<!-- ══════════════ S22 VISION ══════════════ -->
+<section class="slide" id="s22">
+  <div class="sc d1"><div class="tag">THE VISION</div></div>
+  <div class="sc d2"><h2 class="hl">Intelligence.<br><em>Certification. Execution. Audit.</em></h2></div>
+  <div class="sc d3">
+    <div class="vision-four">
+      <div class="vis-c"><div class="vis-name">CIBIL</div><div class="vis-desc">Built trust in credit intelligence. Every lender depends on it. Cannot be replaced.</div></div>
+      <div class="vis-c"><div class="vis-name">Bloomberg</div><div class="vis-desc">Built trust in market information. Every institution depends on it. Cannot be replaced.</div></div>
+      <div class="vis-c"><div class="vis-name">ISO</div><div class="vis-desc">Built trust through process certification. Every industry depends on it. Cannot be replaced.</div></div>
+      <div class="vis-c arya"><div class="vis-name">ARYA</div><div class="vis-desc">Building trust between capital and execution. Every investor and broker will depend on it. Cannot be replaced.</div></div>
+    </div>
+  </div>
+  <div class="sc d4">
+    <div class="vision-final">
+      "Don't ask investors to blindly trust the broker.<br>
+      Don't ask brokers to blindly trust the algorithm.<br>
+      <strong>Build the system where intelligence, authorization and execution<br>can be independently verified — permanently.</strong>"
+    </div>
+  </div>
+  <div class="sc d5">
+    <div style="text-align:center;margin-top:28px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--gld);">ARYA CERTIFIED™ · ARYA CERTIFIED BROKER™ · ARYA CERTIFIED SIGNAL™ · ARYA EXECUTION CERTIFICATE™</div>
+    </div>
+  </div>
+  <div class="sf"><div class="sf-b">ARYA</div><div class="sf-n">22 / 22</div></div>
+</section>
+
+<div class="sh" id="sh">SCROLL<div class="sh-line"></div></div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const ndots=document.getElementById('ndots');
+const nlbl=document.getElementById('nlbl');
+const sh=document.getElementById('sh');
+const lbls=['THE VISION','THE PROBLEM','ARCHITECTURE GAP','WHY NOW','THE INSIGHT','DEMAND ENGINE','WHAT IS ARYA','THE STANDARD','THE FLOW','PRODUCT · DASHBOARD','PRODUCT · BROKER','PRODUCT · AUDIT TRAIL','BUSINESS MODEL','MARKET','COMPETITIVE','THE MOAT','REGULATORY','THE FOUNDER','CURRENT STATUS','ROADMAP','THE ASK','THE VISION'];
+slides.forEach((_,i)=>{
+  const d=document.createElement('button');
+  d.className='ndot'+(i===0?' active':'');
+  d.onclick=()=>slides[i].scrollIntoView({behavior:'smooth'});
+  ndots.appendChild(d);
+});
+const dots=document.querySelectorAll('.ndot');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const i=Array.from(slides).indexOf(e.target);
+      dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+      nlbl.textContent=lbls[i]||'';
+      e.target.querySelectorAll('.sc').forEach(el=>el.classList.add('v'));
+      sh.style.opacity=i===0?'1':'0';
+    }
+  });
+},{threshold:.45});
+slides.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

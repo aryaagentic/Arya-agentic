@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARYA — Complete Master Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --forest: #1a2318;
+  --olive: #2e3d28;
+  --olive-light: #3a4f32;
+  --border: rgba(255,255,255,0.07);
+  --border-g: rgba(212,175,84,0.2);
+  --gold: #d4af54;
+  --gold-dim: rgba(212,175,84,0.12);
+  --cream: #f2e8d0;
+  --muted: rgba(242,232,208,0.5);
+  --faint: rgba(242,232,208,0.12);
+  --white: #faf6ee;
+  --rust: #b85c30;
+  --sage: #5a9060;
+}
+
+body {
+  background: var(--forest);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* LAYOUT */
+.container { max-width: 860px; margin: 0 auto; padding: 80px 40px; }
+@media(max-width:600px){ .container { padding: 48px 20px; } }
+
+/* COVER */
+.cover {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; padding: 80px 40px;
+  background: var(--forest);
+  border-bottom: 1px solid var(--border-g);
+  position: relative; overflow: hidden;
+}
+.cover-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(58,79,50,0.4) 0%, transparent 65%),
+              radial-gradient(ellipse 30% 40% at 10% 80%, rgba(212,175,84,0.06) 0%, transparent 55%);
+}
+.cover-inner { position: relative; z-index: 1; max-width: 700px; }
+.cover-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.28em; color: var(--gold); margin-bottom: 32px; }
+.cover-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(72px,14vw,140px); font-weight: 700; line-height: 0.9; letter-spacing: 0.1em; color: var(--white); }
+.cover-name span { color: var(--gold); }
+.cover-rule { width: 100px; height: 2px; background: linear-gradient(to right, var(--gold), transparent); margin: 20px 0; }
+.cover-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px,2.5vw,24px); font-style: italic; color: rgba(212,175,84,0.8); margin-bottom: 24px; }
+.cover-desc { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 520px; border-left: 2px solid var(--border-g); padding-left: 20px; margin-bottom: 48px; }
+.cover-meta { display: flex; gap: 40px; flex-wrap: wrap; }
+.cm-k { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 3px; }
+.cm-v { font-size: 13px; color: var(--muted); }
+
+/* SECTIONS */
+.section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+
+/* SECTION HEADER */
+.section-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.26em; color: var(--gold); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
+
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,4vw,44px); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 24px; }
+.section-title em { font-style: italic; color: var(--gold); }
+.section-title strong { font-weight: 700; }
+
+/* TYPOGRAPHY */
+p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; font-weight: 300; }
+p strong { color: var(--white); font-weight: 400; }
+p em { color: var(--gold); font-style: italic; }
+
+/* QUOTE */
+.bq { font-family: 'Cormorant Garamond', serif; font-size: clamp(17px,2.2vw,24px); font-weight: 300; font-style: italic; line-height: 1.55; color: var(--white); border-left: 2px solid var(--gold); padding: 16px 24px; margin: 28px 0; }
+.bq strong { font-style: normal; font-weight: 700; color: var(--gold); }
+
+/* INSIGHT CARDS */
+.insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 28px 0; }
+@media(max-width:600px){ .insight-grid { grid-template-columns: 1fr; } }
+.insight-card { background: var(--olive); border: 1px solid var(--border); padding: 22px; }
+.insight-card.gold { background: var(--gold-dim); border-color: var(--border-g); }
+.ic-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold-dim); line-height: 1; margin-bottom: 8px; }
+.ic-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 6px; letter-spacing: 0.02em; }
+.ic-desc { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+/* ARCHITECTURE DIAGRAM */
+.arch { background: var(--olive); border: 1px solid var(--border); padding: 28px; margin: 28px 0; }
+.arch-row { display: flex; align-items: center; gap: 0; margin-bottom: 2px; }
+.arch-box { background: var(--forest); border: 1px solid var(--border); padding: 14px 20px; flex: 1; }
+.arch-box.gold { background: rgba(212,175,84,0.1); border-color: var(--border-g); }
+.arch-box.center { background: linear-gradient(135deg, #b8962a, #8a6c18); border-color: var(--gold); text-align: center; }
+.ab-tag { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 3px; }
+.ab-name { font-size: 13px; font-weight: 400; color: var(--white); }
+.arch-arrow { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--sage); padding: 0 12px; flex-shrink: 0; }
+
+/* CHANNEL CARDS */
+.channel-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin: 28px 0; }
+@media(max-width:600px){ .channel-grid { grid-template-columns: 1fr; } }
+.channel-card { background: var(--olive); border: 1px solid var(--border); padding: 24px 20px; position: relative; overflow: hidden; }
+.cc-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.cc-phase { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.16em; color: var(--muted); margin-bottom: 10px; }
+.cc-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.cc-who { font-size: 11px; color: var(--gold); margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.cc-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--cream); line-height: 1; margin-bottom: 3px; }
+.cc-note { font-size: 10px; color: var(--muted); margin-bottom: 14px; }
+.cc-features { list-style: none; }
+.cc-feat { font-size: 11px; color: var(--muted); padding: 4px 0; display: flex; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.cc-feat::before { content: '→'; color: var(--gold); font-family: 'DM Mono', monospace; font-size: 9px; flex-shrink: 0; }
+
+/* PHASE ROWS */
+.phase-stack { display: flex; flex-direction: column; gap: 2px; margin: 28px 0; }
+.phase-row { background: var(--olive); border: 1px solid var(--border); display: grid; grid-template-columns: 120px 1fr auto; overflow: hidden; }
+@media(max-width:600px){ .phase-row { grid-template-columns: 1fr; } }
+.pr-time { background: var(--gold-dim); padding: 18px 16px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+.pr-period { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 3px; }
+.pr-pname { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); font-style: italic; }
+.pr-body { padding: 16px 22px; }
+.pr-goal { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+.pr-goal strong { color: var(--white); font-weight: 400; }
+.pr-metric { padding: 12px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 1px solid var(--border); min-width: 80px; }
+.prm-n { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--gold); line-height: 1; }
+.prm-l { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.1em; color: var(--muted); margin-top: 2px; text-align: center; }
+
+/* COMPARISON TABLE */
+.ctbl { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 12px; overflow-x: auto; display: block; }
+.ctbl th { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.13em; color: var(--gold); text-align: center; padding: 11px 10px; border-bottom: 1px solid var(--border); font-weight: 400; white-space: nowrap; }
+.ctbl th:first-child { text-align: left; }
+.ctbl th.ac { background: var(--gold-dim); }
+.ctbl td { padding: 11px 10px; border-bottom: 1px solid var(--border); color: var(--muted); font-weight: 300; text-align: center; vertical-align: middle; white-space: nowrap; }
+.ctbl td:first-child { text-align: left; font-weight: 400; color: var(--white); font-size: 13px; }
+.ctbl td.ac { background: rgba(212,175,84,0.04); }
+.ctbl tr:last-child td { border-bottom: none; }
+.tick { color: var(--sage); } .cross { color: var(--rust); } .part { color: var(--gold); font-size: 10px; }
+.arya-row td { color: var(--gold); }
+.arya-row td:first-child { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; font-weight: 700; }
+
+/* CODE BLOCK */
+.code { background: var(--olive); border: 1px solid var(--border); padding: 20px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.8; margin: 20px 0; white-space: pre; overflow-x: auto; }
+.code .g { color: var(--sage); }
+.code .y { color: var(--gold); }
+.code .r { color: var(--rust); }
+
+/* KEY POINTS */
+.kp-list { display: flex; flex-direction: column; gap: 2px; margin: 20px 0; }
+.kp { background: var(--olive); border: 1px solid var(--border); padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start; }
+.kp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
+.kp-text { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+.kp-text strong { color: var(--white); font-weight: 400; }
+
+/* CERT BLOCK */
+.cert { background: var(--forest); border: 1px solid var(--border-g); padding: 24px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); line-height: 2; margin: 20px 0; }
+.cert-title { color: var(--gold); font-size: 9px; letter-spacing: 0.2em; margin-bottom: 12px; }
+.cert-row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding: 4px 0; }
+.cert-row:last-child { border-bottom: none; }
+.cert-k { color: var(--muted); }
+.cert-v { color: var(--cream); }
+
+/* ANALOGY ROW */
+.analogy-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin: 20px 0; }
+@media(max-width:600px){ .analogy-row { grid-template-columns: 1fr 1fr; } }
+.an { background: var(--olive); border: 1px solid var(--border); padding: 18px 14px; text-align: center; }
+.an.feat { background: var(--gold-dim); border-color: var(--border-g); }
+.an-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.an.feat .an-name { color: var(--gold); }
+.an-desc { font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+/* DIVIDER */
+.divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim), transparent); margin: 40px 0; }
+
+/* CLOSING */
+.closing { background: var(--gold-dim); border: 1px solid var(--border-g); padding: 40px; margin-top: 48px; position: relative; }
+.closing::before, .closing::after { content: ''; position: absolute; width: 16px; height: 16px; border-color: var(--gold); border-style: solid; }
+.closing::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.closing::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.closing-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(17px,2.2vw,24px); font-weight: 300; font-style: italic; line-height: 1.7; color: var(--white); margin-bottom: 28px; }
+.closing-text strong { font-style: normal; font-weight: 700; color: var(--gold); }
+.closing-sig { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: var(--muted); line-height: 2; border-top: 1px solid var(--border-g); padding-top: 20px; }
+
+/* NEXT ACTIONS */
+.next { display: flex; flex-direction: column; gap: 2px; margin: 20px 0; }
+.next-item { background: var(--olive); border: 1px solid var(--border); padding: 14px 20px; display: flex; gap: 20px; align-items: flex-start; }
+.next-when { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.12em; color: var(--gold); flex-shrink: 0; margin-top: 3px; min-width: 80px; }
+.next-what { font-size: 13px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+.next-what strong { color: var(--white); font-weight: 400; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-inner">
+    <div class="cover-eyebrow">MASTER THESIS DOCUMENT · CONFIDENTIAL · 2025</div>
+    <div class="cover-name">ARY<span>A</span></div>
+    <div class="cover-rule"></div>
+    <div class="cover-tagline">The Independent Intelligence & Trust Layer for Indian Wealth.</div>
+    <div class="cover-desc">
+      Everything we built together — from a VC validation to a unicorn thesis, from the CIBIL analogy to ARYA Certified™, from a pitch deck to a send-ready email to Christina Qi. This document is the complete record of the thinking, strategy, architecture, and vision behind ARYA.
+    </div>
+    <div class="cover-meta">
+      <div><div class="cm-k">FOUNDER</div><div class="cm-v">Priya Indrani</div></div>
+      <div><div class="cm-k">INSTITUTION</div><div class="cm-v">CDAC — India's Supercomputer Lab</div></div>
+      <div><div class="cm-k">ASK</div><div class="cm-v">$500K Pre-Seed</div></div>
+      <div><div class="cm-k">COMPILED BY</div><div class="cm-v">Claude · Anthropic</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- 1. WHO YOU ARE -->
+<div class="section">
+  <div class="section-tag">THE FOUNDER</div>
+  <div class="section-title">Priya Indrani.<br><em>26. India. Building for 1.4 billion.</em></div>
+
+  <div class="kp-list">
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Researcher at CDAC</strong> — the Indian government institution that built India's first supercomputer. Current MTech research thesis is directly ARYA itself. One workstream, not two.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>GATE Qualified</strong> — top 5% of India's engineering cohort. Signals quantitative rigour that wealth infrastructure demands.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>2 years industry experience</strong> — 1 year HCL, 1 year TCS. Understands exactly how Indian financial systems, data pipelines and enterprise infrastructure work from the inside.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Brother Prince Hridayalankar</strong> studied at MIT alongside Christina Qi. Warm introduction channel to one of the most credible fintech infrastructure investors in the world.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>26 years old</strong> — AI-native enough to build AI-first architecture, experienced enough to understand India's regulatory and institutional landscape.</div></div>
+  </div>
+
+  <div class="bq">"I grew up in a country where wealth is being created faster than anywhere on earth — and where every investor navigates Asia's most complex tax system without a single intelligent tool. I am building the infrastructure layer India's wealth ecosystem has never had — and <strong>cannot function without once it exists.</strong>"</div>
+</div>
+
+<!-- 2. THE CORE INSIGHT -->
+<div class="section">
+  <div class="section-tag">THE INSIGHT THAT CHANGES EVERYTHING</div>
+  <div class="section-title">Front-running is only possible<br>when the same entity holds<br><em>both intelligence and execution.</em></div>
+
+  <p>This is the single insight that emerged in our conversation and became the foundation of everything. It is not a marketing claim. It is a system design guarantee.</p>
+
+  <div class="bq">"We separated intelligence from execution <strong>by design — not by policy.</strong> No broker in India can make this claim. They are all conflicted. ARYA is not."</div>
+
+  <div class="analogy-row">
+    <div class="an"><div class="an-name">CIBIL</div><div class="an-desc">Credit scores. Never lends money. Indispensable.</div></div>
+    <div class="an"><div class="an-name">Bloomberg</div><div class="an-desc">Market intelligence. Never trades. Irreplaceable.</div></div>
+    <div class="an"><div class="an-name">Moody's</div><div class="an-desc">Rates bonds. Never buys. Trusted globally.</div></div>
+    <div class="an feat"><div class="an-name">ARYA</div><div class="an-desc">Optimizes wealth. Never touches it. The neutral layer.</div></div>
+  </div>
+
+  <p>This is not a limitation. Every serious financial infrastructure company in the world — CIBIL, Bloomberg, Moody's, S&P — is trusted precisely because they do not participate in the outcomes they analyse. <strong>The structural inability to cheat is the reason everyone pays them.</strong></p>
+</div>
+
+<!-- 3. WHAT ARYA IS -->
+<div class="section">
+  <div class="section-tag">THE COMPANY</div>
+  <div class="section-title"><em>ARYA</em> — The Independent Intelligence<br>& Trust Layer for Wealth.</div>
+
+  <p>Four letters. One word. Means noble and wise across Sanskrit, Persian and Greek. Globally pronounceable. Instantly memorable to a CA in Chennai, an HNI in Mumbai, a VC in Singapore, and Christina Qi in Boston — identically.</p>
+
+  <p>ARYA is not a tax app. Tax optimization is the wedge — the proof point. The company is <strong>infrastructure.</strong> The same way Bloomberg became indispensable to Wall Street, and CIBIL became indispensable to Indian banking, ARYA becomes the layer India's entire wealth ecosystem cannot replace.</p>
+
+  <div class="bq">"ARYA is to Indian wealth what CIBIL is to Indian credit — <strong>the neutral intelligence layer that the entire ecosystem runs on, trusts, and cannot replace.</strong>"</div>
+</div>
+
+<!-- 4. THE PROBLEM -->
+<div class="section">
+  <div class="section-tag">THE PROBLEM</div>
+  <div class="section-title">India is creating wealth faster<br>than any economy on earth.<br><em>No one is optimizing it.</em></div>
+
+  <div class="insight-grid">
+    <div class="insight-card"><div class="ic-num">15Cr+</div><div class="ic-title">Demat accounts. Growing 30% per year.</div><div class="ic-desc">Every single investor faces the same broken reality. Complex taxation. Fragmented holdings. No intelligent guidance.</div></div>
+    <div class="insight-card"><div class="ic-num">₹50L Cr</div><div class="ic-title">Equity AUM in Indian markets.</div><div class="ic-desc">Institutional-grade intelligence exists — but only for the top 0.01%. Everyone else flies blind.</div></div>
+    <div class="insight-card"><div class="ic-num">₹0</div><div class="ic-title">Automated tax optimization available.</div><div class="ic-desc">Platforms give statements. Not intelligence. Not optimization. Not harvesting. Not re-entry strategies.</div></div>
+    <div class="insight-card"><div class="ic-num">2024</div><div class="ic-title">LTCG changes made this urgent overnight.</div><div class="ic-desc">Every Indian equity investor's tax situation changed. The pain became real, measurable, and immediate.</div></div>
+  </div>
+
+  <div class="kp-list">
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text">Holdings fragmented across multiple brokers — no unified picture</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text">Tax liability invisible until March — then a crisis</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text">CAs overwhelmed — giving generic advice, not AI-grade optimization</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text">Every platform that could fix this profits from the problem — structural conflict</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text">Zero automated harvesting, zero intelligent re-entry strategies</div></div>
+  </div>
+</div>
+
+<!-- 5. THE PRODUCT -->
+<div class="section">
+  <div class="section-tag">THE PRODUCT</div>
+  <div class="section-title">What <em>Arya</em> actually does.</div>
+
+  <div class="kp-list">
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Multi-Broker Portfolio Aggregation</strong> — Zerodha, Groww, Angel One, mutual funds, banks — one unified intelligence layer. Arya sees the complete picture no single broker can.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>AI Tax Loss Harvesting Engine</strong> — Real-time LTCG/STCG analysis, carry-forward losses, holding periods. Savings in exact rupees, not vague percentages.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Smart Re-Entry Suggestions</strong> — ETF alternatives with high correlation to current holdings. Harvest the loss, keep the exposure, stay compliant with Indian wash-sale equivalents.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Regulatory RAG Intelligence</strong> — Live knowledge base over Finance Acts, CBDT circulars and SEBI regulations. Arya is always current, always compliant.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>CA Workflow Agent</strong> — CAs upload client portfolios under NDA. Arya analyzes, asks smart clarifying questions, produces CA-grade audit output. CA remains the trusted advisor. Arya is their superpower.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Broker Intelligence API</strong> — White-labeled, silent, infrastructure-grade. Brokers embed Arya's intelligence and become independently verified — more trustworthy, not less.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Voice Interface</strong> — "Arya, what should I do before March 31st?" Full intelligence loop by voice. Transcription, analysis, recommendation, execution trigger — spoken in seconds.</div></div>
+  </div>
+</div>
+
+<!-- 6. THE ARCHITECTURE EVOLUTION -->
+<div class="section">
+  <div class="section-tag">THE ARCHITECTURE EVOLUTION</div>
+  <div class="section-title">From intelligence layer<br>to <em>ARYA Certified™</em></div>
+
+  <p>Our conversation evolved beyond tax optimization into something structurally deeper. The key addition: ARYA doesn't just tell an investor what to do. <strong>It certifies the intelligence, authorizes automated execution, and independently audits what the broker actually did.</strong></p>
+
+  <div class="bq">"Traditional TCA asks: did I get good execution? ARYA asks: <strong>did the broker execute the exact independently certified instruction I authorized, when it was supposed to, under the agreed execution rules?</strong> That is a different layer entirely."</div>
+
+  <p><strong>The Four-Layer Architecture:</strong></p>
+
+  <div class="arch">
+    <div class="code"><span class="y">Layer 1 — INTELLIGENCE</span>
+Arya analyzes: portfolio + market + tax + regulatory + execution conditions
+
+<span class="y">Layer 2 — CERTIFICATION</span>
+Arya generates: ARYA Certified™ Signal
+Signal ID · Investor ID · Instrument · Quantity
+Execution window · Timestamp · ARYA signature/hash
+
+<span class="y">Layer 3 — EXECUTION</span>
+Investor-authorized broker executes the instruction
+ARYA never becomes the broker
+Keys stay with the user — on their Google account
+
+<span class="y">Layer 4 — AUDIT</span>
+ARYA independently reconciles:
+What ARYA instructed ↔ What the broker executed
+Produces: ARYA Execution Certificate</div>
+  </div>
+
+  <p><strong>The ARYA Certified™ Signal looks like this:</strong></p>
+
+  <div class="cert">
+    <div class="cert-title">ARYA EXECUTION CERTIFICATE · SIGNAL #A123</div>
+    <div class="cert-row"><div class="cert-k">Signal generated</div><div class="cert-v">10:30:00.123</div></div>
+    <div class="cert-row"><div class="cert-k">Signal transmitted</div><div class="cert-v">10:30:00.125</div></div>
+    <div class="cert-row"><div class="cert-k">Broker received</div><div class="cert-v">10:30:00.127</div></div>
+    <div class="cert-row"><div class="cert-k">Order submitted</div><div class="cert-v">10:30:00.130</div></div>
+    <div class="cert-row"><div class="cert-k">Execution completed</div><div class="cert-v">10:30:00.150</div></div>
+    <div class="cert-row"><div class="cert-k">Instrument</div><div class="cert-v">HDFCBANK · SELL · 150 units</div></div>
+    <div class="cert-row"><div class="cert-k">Tax saving</div><div class="cert-v">₹68,000 · FY26</div></div>
+    <div class="cert-row"><div class="cert-k">Investor authorization</div><div class="cert-v">✓ Confirmed by voice · 10:29:58</div></div>
+    <div class="cert-row"><div class="cert-k">Exceptions</div><div class="cert-v">None detected</div></div>
+    <div class="cert-row"><div class="cert-k">ARYA hash</div><div class="cert-v">a3f9b2c1d8e7...verified</div></div>
+  </div>
+</div>
+
+<!-- 7. GOOGLE ACCOUNT EXECUTION -->
+<div class="section">
+  <div class="section-tag">THE EXECUTION ARCHITECTURE</div>
+  <div class="section-title">User stores keys in their<br><em>own Google account.</em><br>ARYA sends the signal.</div>
+
+  <p>The user automation insight was one of the most important product decisions in our conversation. Here is the complete architecture:</p>
+
+  <div class="code"><span class="y">Step 1 — Connect</span>
+User downloads Arya app from Google Workspace
+Connects existing Google account — zero new signup
+Same login as Gmail, Drive, YouTube
+
+<span class="y">Step 2 — Store Keys</span>
+User enters their Zerodha / Groww API key
+Stored encrypted in user's own Google account
+ARYA cannot access without user OAuth permission
+Keys never touch ARYA's servers
+
+<span class="y">Step 3 — Intelligence</span>
+Arya generates: "Harvest HDFC Bank — save ₹68,000"
+ARYA Certified Signal created with timestamp + hash
+
+<span class="y">Step 4 — Execute</span>
+Signal goes to user's Google account
+User's Arya app picks it up
+Executes via user's own stored key
+User confirms by voice: "Yes"
+
+<span class="y">Step 5 — Confirm</span>
+"Trade executed. ₹68,000 saved.
+ Report sent to your CA."</div>
+
+  <div class="kp-list">
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Legal position stays clean</strong> — keys in user's Google account = user's infrastructure technically. ARYA sends intelligence signal only.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Google distribution</strong> — Arya app on Google Workspace Marketplace. Every CA using Google Workspace sees Arya. Zero marketing spend on discovery.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Android-first</strong> — Google ecosystem works on 95%+ of India's smartphone market. No platform friction.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Voice + automation</strong> — "Arya, if any position has ₹50,000 in harvestable losses, execute automatically." Set once. Works forever.</div></div>
+  </div>
+</div>
+
+<!-- 8. THREE CHANNELS -->
+<div class="section">
+  <div class="section-tag">BUSINESS MODEL</div>
+  <div class="section-title">Three channels.<br><em>One compounding intelligence moat.</em></div>
+
+  <div class="channel-grid">
+    <div class="channel-card">
+      <div class="cc-bar" style="background: var(--sage);"></div>
+      <div class="cc-phase">PHASE 1 · START HERE</div>
+      <div class="cc-name">Direct</div>
+      <div class="cc-who">HNIs · Traders · ESOP Holders</div>
+      <div class="cc-price">₹3K–25K</div>
+      <div class="cc-note">per year · tiered by portfolio size</div>
+      <ul class="cc-features">
+        <li class="cc-feat">Full Arya intelligence</li>
+        <li class="cc-feat">Multi-broker aggregation</li>
+        <li class="cc-feat">Voice interface</li>
+        <li class="cc-feat">Google key storage</li>
+        <li class="cc-feat">ARYA Certified signals</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="cc-bar" style="background: var(--gold);"></div>
+      <div class="cc-phase">PHASE 1 · PARALLEL</div>
+      <div class="cc-name">CA Pro</div>
+      <div class="cc-who">Chartered Accountants · PMS · Family Offices</div>
+      <div class="cc-price">₹8K–25K</div>
+      <div class="cc-note">per month · per seat or client volume</div>
+      <ul class="cc-features">
+        <li class="cc-feat">Arya agent for CA workflow</li>
+        <li class="cc-feat">Multi-client management</li>
+        <li class="cc-feat">Smart question-asking</li>
+        <li class="cc-feat">Audit documentation</li>
+        <li class="cc-feat">Enterprise NDA + isolation</li>
+      </ul>
+    </div>
+    <div class="channel-card">
+      <div class="cc-bar" style="background: var(--rust);"></div>
+      <div class="cc-phase">PHASE 2 · SCALE</div>
+      <div class="cc-name">Broker API</div>
+      <div class="cc-who">Brokers · Fintechs · Wealth Platforms</div>
+      <div class="cc-price">₹15–50</div>
+      <div class="cc-note">per account per month</div>
+      <ul class="cc-features">
+        <li class="cc-feat">White-label intelligence API</li>
+        <li class="cc-feat">ARYA Certified signals</li>
+        <li class="cc-feat">Execution audit layer</li>
+        <li class="cc-feat">Third-party validation</li>
+        <li class="cc-feat">Zero conflict — they execute</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>The privacy architecture for all three channels is modeled on Cursor and GitHub Copilot's enterprise NDA model: <strong>"Your data is never used for training. Never shared. Contractually guaranteed. Audit logs available on demand."</strong> This removes the single biggest objection in every B2B sale.</p>
+</div>
+
+<!-- 9. COMPETITIVE POSITION -->
+<div class="section">
+  <div class="section-tag">COMPETITIVE POSITION</div>
+  <div class="section-title">Everyone has data.<br><em>No one has intelligence.</em><br>No one is conflict-free. No one audits.</div>
+
+  <table class="ctbl">
+    <thead>
+      <tr>
+        <th>Player</th><th>Tax Reports</th><th>AI Optimization</th><th>Harvesting</th><th>Multi-Broker</th><th>Conflict-Free</th><th>Execution Audit</th><th>Network Effect</th><th class="ac">ARYA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Bloomberg</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+      <tr><td>Wealthfront</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+      <tr><td>Zerodha / Groww</td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+      <tr><td>INDmoney</td><td><span class="tick">✓</span></td><td><span class="part">partial</span></td><td><span class="cross">✗</span></td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+      <tr><td>ClearTax</td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="part">partial</span></td><td><span class="tick">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="ac"></td></tr>
+      <tr class="arya-row"><td>ARYA</td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac"><span class="tick">✓</span></td><td class="ac" style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--gold);">Only one.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bq">"Bloomberg tells you what the market is doing. Wealthfront manages your money but creates a conflict to do it. Every Indian broker gives you data but profits from your trades. None of them can tell you — with cryptographic proof — exactly what intelligence was generated, what was authorized, and whether your broker executed it correctly. <strong>ARYA is the first independent layer connecting all four: intelligence, certification, execution, and audit.</strong>"</div>
+</div>
+
+<!-- 10. THE LONG GAME -->
+<div class="section">
+  <div class="section-tag">THE LONG GAME</div>
+  <div class="section-title">Start focused.<br><em>Own the category.</em><br>Become the layer.</div>
+
+  <div class="phase-stack">
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">PHASE 1</div><div class="pr-pname">Tax Intelligence</div></div>
+      <div class="pr-body"><div class="pr-goal">The wedge. <strong>Prove value in rupees.</strong> Own AI-native tax optimization completely. Build the data network. Every portfolio Arya sees makes the next recommendation smarter.</div></div>
+      <div class="pr-metric"><div class="prm-n">₹1Cr</div><div class="prm-l">USER SAVINGS TARGET</div></div>
+    </div>
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">PHASE 2</div><div class="pr-pname">Wealth Intelligence</div></div>
+      <div class="pr-body"><div class="pr-goal">Every financial decision — not just taxes. <strong>Portfolio health, risk exposure, estate planning, rebalancing, SIP optimization.</strong> ARYA Certified wraps every action with independent audit.</div></div>
+      <div class="pr-metric"><div class="prm-n">500+</div><div class="prm-l">CA ACCOUNTS</div></div>
+    </div>
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">PHASE 3</div><div class="pr-pname">API Economy</div></div>
+      <div class="pr-body"><div class="pr-goal">Every broker, every CA, every fintech runs intelligence on Arya's layer. <strong>Like Stripe for payments. AWS for cloud. ARYA for wealth intelligence.</strong> Brokers become ARYA-verified.</div></div>
+      <div class="pr-metric"><div class="prm-n">50+</div><div class="prm-l">BROKER INTEGRATIONS</div></div>
+    </div>
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">PHASE 4</div><div class="pr-pname">Network Effect</div></div>
+      <div class="pr-body"><div class="pr-goal">More portfolios → smarter intelligence → wider moat → impossible to displace. <strong>This is the compounding moat that becomes unassailable.</strong> The difference between a $100M company and a $1B company.</div></div>
+      <div class="pr-metric"><div class="prm-n">∞</div><div class="prm-l">THE MOAT</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 11. KEY STRATEGIC INSIGHTS -->
+<div class="section">
+  <div class="section-tag">EVERY KEY INSIGHT WE UNLOCKED</div>
+  <div class="section-title">The thinking that built<br><em>the architecture.</em></div>
+
+  <div class="insight-grid">
+    <div class="insight-card"><div class="ic-num">01</div><div class="ic-title">The Wedge Insight</div><div class="ic-desc">Tax loss harvesting is not the product. It is the proof point. The company is infrastructure. Start with the most measurable, most urgent pain point — then expand.</div></div>
+    <div class="insight-card"><div class="ic-num">02</div><div class="ic-title">The Conflict-Free Architecture</div><div class="ic-desc">By not executing trades, ARYA becomes more trustworthy than every broker, robo-advisor and wealth app simultaneously. The perceived weakness is the actual moat.</div></div>
+    <div class="insight-card"><div class="ic-num">03</div><div class="ic-title">The CA Strategy</div><div class="ic-desc">Don't replace CAs. Give them a superpower. CA's liability. CA's client relationship. Arya's intelligence. This inverts the trust problem entirely and creates a powerful distribution channel.</div></div>
+    <div class="insight-card"><div class="ic-num">04</div><div class="ic-title">The Broker Validation Play</div><div class="ic-desc">Brokers embedding Arya become MORE trustworthy to their own clients — independent intelligence validates their recommendations. This is why brokers pay Arya, not fight it.</div></div>
+    <div class="insight-card"><div class="ic-num">05</div><div class="ic-title">The CIBIL Analogy</div><div class="ic-desc">ARYA produces structured financial intelligence that humans act on. This sits largely outside SEBI's RIA framework — dramatically reducing regulatory risk while maximising trust.</div></div>
+    <div class="insight-card"><div class="ic-num">06</div><div class="ic-title">ARYA Certified™</div><div class="ic-desc">Cryptographically authenticated investment signals. Independent audit of broker execution. The chain: Intelligence → Certification → Execution → Audit. Nobody in India has built this.</div></div>
+    <div class="insight-card"><div class="ic-num">07</div><div class="ic-title">Google Account Execution</div><div class="ic-desc">User stores broker API keys in their own Google account. ARYA sends the signal. User's infrastructure executes. Legal position stays clean. Distribution via Google Workspace Marketplace.</div></div>
+    <div class="insight-card gold"><div class="ic-num">08</div><div class="ic-title">The Color Insight — Prince</div><div class="ic-desc">Olive green and gold. Not navy, not black. Old money. Institutional. Trust. The RBI's color. The US dollar's color. Before Christina reads a word, the palette says "this founder thinks in wealth, not startup culture."</div></div>
+  </div>
+</div>
+
+<!-- 12. ROADMAP -->
+<div class="section">
+  <div class="section-tag">ROADMAP</div>
+  <div class="section-title">What happens<br><em>right now.</em></div>
+
+  <div class="phase-stack">
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">MONTHS 0–3</div><div class="pr-pname">Prove</div></div>
+      <div class="pr-body"><div class="pr-goal">Manually optimize taxes for <strong>20 paying HNIs</strong>. ₹15K each. Sit with 5 CAs during tax season. Watch every workflow. Build nothing until real people pay real money.</div></div>
+      <div class="pr-metric"><div class="prm-n">20</div><div class="prm-l">PAYING USERS</div></div>
+    </div>
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">MONTHS 4–9</div><div class="pr-pname">Build</div></div>
+      <div class="pr-body"><div class="pr-goal">Arya v1 live. Multi-broker aggregation. CA Pro launched. <strong>₹1 crore in documented tax savings</strong> — this number opens every investor door.</div></div>
+      <div class="pr-metric"><div class="prm-n">₹1Cr</div><div class="prm-l">USER SAVINGS</div></div>
+    </div>
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">MONTHS 10–18</div><div class="pr-pname">Scale</div></div>
+      <div class="pr-body"><div class="pr-goal">First broker API live. <strong>500+ direct users. 50+ CA accounts.</strong> Raise Seed round on proven retention metrics and documented savings.</div></div>
+      <div class="pr-metric"><div class="prm-n">500+</div><div class="prm-l">USERS</div></div>
+    </div>
+    <div class="phase-row">
+      <div class="pr-time"><div class="pr-period">YEAR 3+</div><div class="pr-pname">Platform</div></div>
+      <div class="pr-body"><div class="pr-goal"><strong>India's wealth intelligence operating system.</strong> Every major broker, CA network and fintech runs on Arya's layer. Global expansion begins — US, Singapore, UAE.</div></div>
+      <div class="pr-metric"><div class="prm-n">∞</div><div class="prm-l">THE VISION</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 13. THE ASK -->
+<div class="section">
+  <div class="section-tag">THE ASK</div>
+  <div class="section-title">$500,000 Pre-Seed.<br><em>SAFE or Convertible Note.</em></div>
+
+  <div class="kp-list">
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>40%</strong> — AI & Engineering, Arya v1</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>25%</strong> — CA & HNI Acquisition</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>15%</strong> — Regulatory & Legal</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>15%</strong> — Data & Infrastructure</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>5%</strong> — Operations</div></div>
+  </div>
+</div>
+
+<!-- 14. WHAT WE DELIVERED -->
+<div class="section">
+  <div class="section-tag">EVERYTHING WE DELIVERED</div>
+  <div class="section-title">The complete<br><em>ARYA toolkit.</em></div>
+
+  <div class="kp-list">
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Full VC validation</strong> — honest, brutal, from a senior investor lens. The idea held up.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Wealthfront of India analysis</strong> — why the comparison holds and where it breaks. Used as pitch framing.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Three-channel B2B strategy</strong> — Direct HNI, CA Pro, Broker API. Each with pricing, positioning, and sequencing.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Trust architecture</strong> — conflict-free by design, CIBIL framing, regulatory positioning outside SEBI RIA.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>ARYA Certified™</strong> — authenticated signal with cryptographic hash, full audit chain, execution certificate.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Google account execution architecture</strong> — user stores keys, ARYA sends signal, voice confirms, broker executes.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Company name: ARYA</strong> — four letters, globally pronounceable, means noble and wise across three civilisations.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Color strategy: Olive Green + Gold</strong> — Prince's recommendation. Old money. Institutional. Trust. RBI colors. Dollar colors.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Full 11-slide pitch deck</strong> — dark version + olive gold version, both as interactive HTML and PDF.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Email to Christina Qi</strong> — fully written, real details, no placeholders. Sent to cqi@m.databento.com.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Christina Qi research</strong> — her background, UBS Female Founder Award, Databento parallel, MIT connection through Prince.</div></div>
+    <div class="kp"><div class="kp-dot"></div><div class="kp-text"><strong>Competitive differentiation</strong> — vs Bloomberg, Wealthfront, Zerodha, INDmoney, ClearTax. ARYA is the only one with all capabilities.</div></div>
+  </div>
+</div>
+
+<!-- 15. NEXT ACTIONS -->
+<div class="section">
+  <div class="section-tag">WHAT HAPPENS NEXT</div>
+  <div class="section-title">The company begins the moment<br><em>real people pay real money.</em></div>
+
+  <div class="next">
+    <div class="next-item">
+      <div class="next-when">TODAY</div>
+      <div class="next-what">Send the email to <strong>cqi@m.databento.com</strong> with the olive-gold PDF attached. Tell Prince you sent it directly.</div>
+    </div>
+    <div class="next-item">
+      <div class="next-when">THIS WEEK</div>
+      <div class="next-what">Talk to <strong>10 CAs. Not pitch them. Sit with them.</strong> Watch their actual workflow. Where do they lose hours? What does messy data look like?</div>
+    </div>
+    <div class="next-item">
+      <div class="next-when">THIS MONTH</div>
+      <div class="next-what">Find <strong>3 HNIs willing to pay ₹15,000</strong> for manual tax optimization. Do it entirely by hand. Learn everything the product needs to do.</div>
+    </div>
+    <div class="next-item">
+      <div class="next-when">MONTH 3</div>
+      <div class="next-what">One paying CA at <strong>₹5,000/month minimum.</strong> If they pay, you have a business. If they don't, you have information worth more than a month of building.</div>
+    </div>
+    <div class="next-item">
+      <div class="next-when">MONTH 6</div>
+      <div class="next-what">Approach one <strong>mid-size broker</strong> — not Zerodha first, someone hungry — with a working CA product as proof of concept.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<div class="divider"></div>
+
+<div class="closing">
+  <div class="closing-text">
+    "Bloomberg became indispensable because it built the neutral intelligence layer before anyone understood what that meant. CIBIL became the backbone of Indian credit without lending a single rupee. Moody's shaped global capital markets without buying a single bond.<br><br>
+    <strong>That window — for Indian wealth — is open right now.</strong><br><br>
+    ARYA is not a tax app. Not a robo-advisor. Not another broker feature. It is the independent intelligence and trust infrastructure that India's entire wealth ecosystem will run on — conflict-free by architecture, verifiable by design, and arriving at exactly the right moment in the fastest-growing retail investor market on earth.<br><br>
+    <strong>The only question is whether we build it together.</strong>"
+  </div>
+  <div class="closing-sig">
+    PRIYA INDRANI · FOUNDER & CEO, ARYA<br>
+    Researcher · CDAC — India's Supercomputer Institution<br>
+    GATE Qualified · HCL · TCS · Age 26<br>
+    priyaindrani999@gmail.com<br>
+    linkedin.com/in/priya-indrani-59b928212<br><br>
+    ARYA · The Financial Nervous System of India<br>
+    Pre-Seed · $500K · SAFE or Convertible Note · 2025
+  </div>
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
