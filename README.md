@@ -33,7 +33,7 @@ ARYA      → Wealth intelligence.  Never executes.
 
 | File | Description |
 |---|---|
-| `arya-pitch-deck.html` | Pre-seed pitch deck (11 slides, clean version) |
+| `arya-pitch-deck.html` | Pre-seed pitch deck (12 slides, clean version) |
 | `arya-pitch-deck-full.html` | Full 22-slide deck with all sections |
 | `arya-master-document.html` | Complete master document — all strategy |
 
