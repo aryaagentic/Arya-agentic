@@ -52,6 +52,6 @@ GATE Qualified · HCL · TCS · Age 26
 
 ## Pre-Seed
 
-Raising **$500,000** · SAFE or Convertible Note · 18 months runway
+Raising **$200,000** · SAFE or Convertible Note · 12 months runway
 
 *Building the trust layer between capital and execution.*
