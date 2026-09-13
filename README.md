@@ -1,25 +1,26 @@
-# ARYA — Financial Intelligence & Execution Infrastructure
+# ARYA — Compliance Verification Infrastructure
 
-**The Independent Financial Intelligence & Execution Standard for India.**
+**The Independent Compliance Verification Standard for India.**
 
-> "ARYA is to Indian wealth what CIBIL is to Indian credit — the neutral intelligence layer that the entire ecosystem runs on, trusts, and cannot replace."
+> "SEBI mandates the audit. Nobody shows you the result. ARYA does."
 
 ---
 
 ## What is ARYA?
 
-ARYA is India's first AI-native wealth intelligence and execution certification infrastructure. It connects investment intelligence, broker execution, and independent audit — trusted by HNIs, demanded by QIBs, certified by design.
+ARYA independently verifies whether an AMC's SEBI-mandated internal surveillance system genuinely functions — by injecting known synthetic test patterns, modeled on real enforcement cases, and reading the AMC's own alert output. The result is delivered to the investor who commissioned the check — QIB, family fund house, or HNI — before capital is committed, not after.
 
-**Three layers:**
-- **Intelligence** — AI Tax Loss Harvesting, multi-broker aggregation, RAG-powered regulatory compliance
-- **Certification** — ARYA Certified Broker™, authenticated signals, ARYA Standard
-- **Audit** — Independent execution verification, ARYA Execution Certificate™
+**Four steps:**
+- **Injection** — synthetic test patterns modeled on real, named SEBI enforcement cases
+- **Capture** — the AMC's own mandated surveillance system's alert response is read directly
+- **Verification** — a dated, falsifiable pass/fail report — evidence, not a certification claim
+- **Delivery** — the result goes to the investor who commissioned it, not the regulator's private file
 
 ---
 
 ## Why ARYA?
 
-Front-running is only possible when the same entity holds both intelligence and execution. ARYA separates these by design — not by policy.
+The compliance audit already exists — SEBI mandates it. But the result is confidential between the fund manager and its regulator, and no QIB, HNI, or institutional allocator has access to it today, in any market. ARYA closes that gap, commissioned by the investor, never by the AMC — avoiding the issuer-pays conflict that undermined Moody's and EY.
 
 ```
 CIBIL     → Credit intelligence.  Never lends.
